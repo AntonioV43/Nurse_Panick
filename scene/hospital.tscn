@@ -1,0 +1,139 @@
+[gd_scene load_steps=8 format=3 uid="uid://bwak085b1d467"]
+
+[ext_resource type="Script" uid="uid://biugua7u0grfs" path="res://script/hospital.gd" id="1_dcg5e"]
+[ext_resource type="Texture2D" uid="uid://gglyvduslmo0" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_lthse"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dcg5e"]
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tfxkh"]
+albedo_texture = ExtResource("1_lthse")
+uv1_scale = Vector3(30, 30, 30)
+
+[sub_resource type="BoxMesh" id="BoxMesh_11tej"]
+size = Vector3(30, 0.1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfxkh"]
+size = Vector3(30, 4, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_klpa6"]
+size = Vector3(30, 4, 0.5)
+
+[node name="hospital" type="Node3D"]
+script = ExtResource("1_dcg5e")
+
+[node name="lantai" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lantai"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_dcg5e")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="lantai"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+material_override = SubResource("StandardMaterial3D_tfxkh")
+mesh = SubResource("BoxMesh_11tej")
+
+[node name="D_internal" type="Node3D" parent="."]
+
+[node name="R_UGD3" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, 8.200001)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.6000004)
+size = Vector3(0.5, 4, 10)
+
+[node name="R_UGD5" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000004, 2, -11.5)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.6000004)
+size = Vector3(0.5, 4, 10)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="D_internal/R_UGD5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 21.25)
+size = Vector3(0.5, 4, 9.900001)
+
+[node name="R_UGD2" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -4.2)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD2"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.35, 0, -0.95)
+size = Vector3(0.5, 4, 10.1)
+
+[node name="R_UGD4" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 5.8)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD4"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.3500004, 0, -0.75)
+size = Vector3(0.5, 4, 10.1)
+
+[node name="R_UGD6" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -4.2)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.35, 0, -0.95)
+size = Vector3(0.5, 4, 10.1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="D_internal/R_UGD6"]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.3499999, 0, 9.25)
+size = Vector3(0.5, 4, 10.1)
+
+[node name="R_UGD" type="CSGCombiner3D" parent="D_internal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 2, -11.5)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_internal/R_UGD"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.6000004)
+size = Vector3(0.5, 4, 10)
+
+[node name="D_eksternal" type="Node3D" parent="."]
+
+[node name="Dinding 2" type="StaticBody3D" parent="D_eksternal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D_eksternal/Dinding 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+shape = SubResource("BoxShape3D_tfxkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="D_eksternal/Dinding 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+mesh = SubResource("BoxMesh_klpa6")
+
+[node name="Dinding 3" type="StaticBody3D" parent="D_eksternal"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D_eksternal/Dinding 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+shape = SubResource("BoxShape3D_tfxkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="D_eksternal/Dinding 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15)
+mesh = SubResource("BoxMesh_klpa6")
+
+[node name="Dinding 4" type="CSGCombiner3D" parent="D_eksternal"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="D_eksternal/Dinding 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, 0)
+size = Vector3(0.5, 4, 30)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="D_eksternal/Dinding 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.4, 0)
+operation = 2
+size = Vector3(1, 2.75, 1.7)
+
+[node name="Dinding 1" type="StaticBody3D" parent="D_eksternal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D_eksternal/Dinding 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+shape = SubResource("BoxShape3D_tfxkh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="D_eksternal/Dinding 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+mesh = SubResource("BoxMesh_klpa6")
