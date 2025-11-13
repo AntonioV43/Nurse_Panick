@@ -1,11 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwak085b1d467"]
+[gd_scene load_steps=18 format=3 uid="uid://bwak085b1d467"]
 
 [ext_resource type="Script" uid="uid://biugua7u0grfs" path="res://script/hospital.gd" id="1_dcg5e"]
 [ext_resource type="Texture2D" uid="uid://gglyvduslmo0" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_lthse"]
+[ext_resource type="PackedScene" uid="uid://cg0wabcsaycf6" path="res://AssetRS/chair_hospital.glb" id="3_pl026"]
+[ext_resource type="PackedScene" uid="uid://8riy758qft3i" path="res://AssetRS/ac.glb" id="4_d5tbs"]
+[ext_resource type="PackedScene" uid="uid://bbd01xkpuvch6" path="res://AssetRS/safety_notice_board.glb" id="5_s31i2"]
+[ext_resource type="PackedScene" uid="uid://8ohif8i3vkw7" path="res://AssetRS/hospital_sharps_container.glb" id="6_d5tbs"]
+[ext_resource type="PackedScene" uid="uid://ct1xcerv53waj" path="res://AssetRS/laboratory__hospital_troly.glb" id="7_wxsig"]
+[ext_resource type="PackedScene" uid="uid://cxx35heccdun7" path="res://AssetRS/hospital_medicine_storage_cabinet.glb" id="8_liv80"]
+[ext_resource type="PackedScene" uid="uid://b5vksckusg5bb" path="res://AssetRS/warning_signs__virus_laboratory.glb" id="9_tx0be"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wt603"]
-vertices = PackedVector3Array(-29.5, 0.3, -13.25, -16, 0.3, -13.25, -16, 0.3, -15.25, -15.25, 0.3, -15.75, -13.75, 0.3, -15.75, -14, 0.3, -29.5, -29.5, 0.3, -29.5, 14, 0.3, -15.75, 14.25, 0.3, -29.5, 15.5, 0.3, -15.75, 16, 0.3, -15, 29.5, 0.3, -15, 29.5, 0.3, -29.5, 15.25, 0.3, -0.25, 15.25, 0.3, 0.25, 16, 0.3, 0.5, 16, 0.3, -0.5, 29.5, 0.3, 15, 16, 0.3, 15, -14.25, 0.3, -14, -14.25, 0.3, -6, -7.25, 0.3, -6, -7.25, 0.3, -14, -5.5, 0.3, -14, -5.5, 0.3, -6, 1.75, 0.3, -6, 1.75, 0.3, -14, 3.5, 0.3, -6, 14.25, 0.3, -5.75, 14.25, 0.3, -14, 3.5, 0.3, -14, -16.75, 0.3, -6, -16, 0.3, -6, -17, 0.3, -5.25, -29.5, 0.3, -5.25, 14.25, 0.3, 0.5, 14.25, 0.3, -0.5, 3.25, 0.3, 4.25, 3.5, 0.3, 6, 14.25, 0.3, 5.75, 1.25, 0.3, -4.25, 1.25, 0.3, 4.25, 3.25, 0.3, -4.25, -16.75, 0.3, 4.25, -16, 0.3, 4.25, -16, 0.3, -4.25, -17, 0.3, -4.5, -29.5, 0.3, 5, -17, 0.3, 5, -14.25, 0.3, -4.25, -14.25, 0.3, 4.25, -16, 0.3, 12.75, -16, 0.3, 6, -17, 0.3, 5.75, -29.5, 0.3, 12.75, 3.5, 0.3, 14.25, 14.25, 0.3, 14.25, -14.25, 0.3, 6, -14.25, 0.3, 14.25, -7.25, 0.3, 14.25, -7.25, 0.3, 6, -5.5, 0.3, 6, -5.5, 0.3, 14.25, 1.75, 0.3, 14.25, 1.75, 0.3, 6, -13.25, 0.3, 29.5, -13.25, 0.3, 16, -15.25, 0.3, 16, -15.75, 0.3, 15.5, -29.5, 0.3, 29.5, 15.25, 0.3, 16, 13.25, 0.3, 16, 13.25, 0.3, 29.5, 29.5, 0.3, 29.5)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 6), PackedInt32Array(3, 6, 5), PackedInt32Array(4, 5, 7), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 7, 8), PackedInt32Array(10, 9, 11), PackedInt32Array(11, 9, 12), PackedInt32Array(12, 9, 8), PackedInt32Array(13, 16, 14), PackedInt32Array(14, 16, 15), PackedInt32Array(16, 11, 15), PackedInt32Array(15, 11, 17), PackedInt32Array(17, 18, 15), PackedInt32Array(16, 10, 11), PackedInt32Array(22, 21, 19), PackedInt32Array(19, 21, 20), PackedInt32Array(26, 25, 23), PackedInt32Array(23, 25, 24), PackedInt32Array(30, 29, 27), PackedInt32Array(27, 29, 28), PackedInt32Array(1, 32, 31), PackedInt32Array(31, 33, 1), PackedInt32Array(1, 33, 34), PackedInt32Array(1, 34, 0), PackedInt32Array(14, 35, 13), PackedInt32Array(13, 35, 36), PackedInt32Array(38, 37, 39), PackedInt32Array(39, 37, 35), PackedInt32Array(42, 37, 40), PackedInt32Array(40, 37, 41), PackedInt32Array(36, 35, 37), PackedInt32Array(42, 27, 37), PackedInt32Array(37, 27, 36), PackedInt32Array(36, 27, 28), PackedInt32Array(45, 44, 43), PackedInt32Array(45, 43, 46), PackedInt32Array(46, 43, 48), PackedInt32Array(46, 48, 47), PackedInt32Array(46, 47, 34), PackedInt32Array(34, 33, 46), PackedInt32Array(50, 49, 41), PackedInt32Array(41, 49, 40), PackedInt32Array(52, 51, 53), PackedInt32Array(53, 51, 54), PackedInt32Array(53, 54, 47), PackedInt32Array(47, 48, 53), PackedInt32Array(55, 38, 56), PackedInt32Array(56, 38, 39), PackedInt32Array(60, 59, 57), PackedInt32Array(57, 59, 58), PackedInt32Array(64, 63, 61), PackedInt32Array(61, 63, 62), PackedInt32Array(67, 66, 65), PackedInt32Array(68, 54, 51), PackedInt32Array(67, 65, 68), PackedInt32Array(68, 65, 69), PackedInt32Array(68, 69, 54), PackedInt32Array(72, 71, 70), PackedInt32Array(18, 17, 70), PackedInt32Array(70, 17, 73), PackedInt32Array(70, 73, 72), PackedInt32Array(66, 71, 65), PackedInt32Array(65, 71, 72)]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tfxkh"]
 size = Vector3(30, 4, 0.5)
@@ -168,3 +173,41 @@ mesh = SubResource("BoxMesh_droga")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9639997, 1.447, 4.8)
 mesh = SubResource("BoxMesh_droga")
+
+[node name="sketchfab_" type="Node3D" parent="."]
+
+[node name="Sketchfab_Scene" parent="sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(-0.99898475, 0, 0.04504928, 0, 1, 0, -0.04504928, 0, -0.99898475, 3.3444636, 0.002554413, -13.671698)
+
+[node name="Sketchfab_Scene2" parent="sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(-0.99898475, 0, 0.04504928, 0, 1, 0, -0.04504928, 0, -0.99898475, 3.3022285, 0.002554413, -12.081978)
+
+[node name="Sketchfab_Scene3" parent="sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(-0.99898475, 0, 0.04504928, 0, 1, 0, -0.04504928, 0, -0.99898475, 3.2891617, 0.002554413, -10.180933)
+
+[node name="Sketchfab_Scene4" parent="sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(-0.99898475, 0, 0.04504928, 0, 1, 0, -0.04504928, 0, -0.99898475, 3.25814, 0.002554413, -8.292296)
+
+[node name="Sketchfab_Scene5" parent="sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(-0.99802667, 0, -0.062790625, 0, 1, 0, 0.062790625, 0, -0.99802667, 3.2517047, 0.0025543533, -6.3933797)
+
+[node name="Sketchfab_Scene6" parent="sketchfab_" instance=ExtResource("4_d5tbs")]
+transform = Transform3D(0.054078843, 0, 0.99853665, 0, 1, 0, -0.99853665, 0, 0.054078843, 2.8121924, 3.3071094, -9.485131)
+
+[node name="Sketchfab_Scene7" parent="sketchfab_" instance=ExtResource("5_s31i2")]
+transform = Transform3D(-4.3711387e-10, 0, 0.03, 0, 0.01, 0, -0.01, 0, -1.3113416e-09, 2.91, 2.312, -9.592)
+
+[node name="Sketchfab_Scene8" parent="sketchfab_" instance=ExtResource("6_d5tbs")]
+transform = Transform3D(-0.06462418, 0, 1.3729879, 0, 1.88, 0, -1.1932514, 0, -0.07435837, 3.094094, 0.19781172, -5.216296)
+
+[node name="Sketchfab_Scene9" parent="sketchfab_" instance=ExtResource("7_wxsig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -0.035, 13)
+
+[node name="Sketchfab_Scene10" parent="sketchfab_" instance=ExtResource("8_liv80")]
+transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 10, 0, 14.5)
+
+[node name="Sketchfab_Scene11" parent="sketchfab_" instance=ExtResource("8_liv80")]
+transform = Transform3D(-0.04, 0, -6.0398317e-09, 0, 0.04, 0, 6.0398317e-09, 0, -0.04, 7, 0, 14.5)
+
+[node name="Sketchfab_Scene12" parent="sketchfab_" instance=ExtResource("9_tx0be")]
+transform = Transform3D(1.86, 0, 0, 0, 1.86, 0, 0, 0, 1.86, 13, 2, 14.7)
