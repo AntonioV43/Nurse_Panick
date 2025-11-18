@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+## === Movement and Navigation Properties ===
 @export var speed: float = 4.0
 @export var stopping_distance: float = 1.6
 @export var rotation_speed: float = 6.0
@@ -10,23 +11,44 @@ var following: bool = false
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 var moving_to_location: bool = false
 
-# === Animation ===
+## === Animation Properties ===
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var anim_state = anim_tree.get("parameters/playback")
 
+## === HP System Properties ===
+@export var max_health: int = 100
+var current_health: int = 0
+signal health_changed(new_health: int)
+signal died
+@export var damage_per_second: int = 1 
+
+## === Timer ===
+@onready var hp_timer: Timer = $HPTimer
+
+
+## ====================================================================
+##                        LIFECYCLE FUNCTIONS
+## ====================================================================
 
 func _ready() -> void:
+	# HP Initialization
+	current_health = max_health
+	health_changed.emit(current_health)
+	
+	# Connect the Timer signal
+	hp_timer.timeout.connect(_on_hp_timer_timeout)
+	
+	# ⭐ CRITICAL FIX: Start the timer manually to guarantee damage over time begins 
+	# even when the patient is spawned/instantiated from another script.
+	hp_timer.start()
+	
+	# Navigation setup
 	agent.avoidance_enabled = true
 	agent.radius = 0.6
 	agent.avoidance_layers = 1
 	agent.avoidance_mask = 1
 	agent.path_max_distance = 0.5
 	agent.path_postprocessing = NavigationPathQueryParameters3D.PATH_POSTPROCESSING_CORRIDORFUNNEL
-
-
-func move_to_location(target_position: Vector3) -> void:
-	moving_to_location = true
-	agent.target_position = target_position
 
 
 func _physics_process(delta: float) -> void:
@@ -81,17 +103,69 @@ func _physics_process(delta: float) -> void:
 	_update_animation()
 
 
-# === ANIMATION LOGIC (WALK & IDLE BOOL) ===
-func _update_animation():
-	var speed_now = Vector3(velocity.x, 0, velocity.z).length()
-	var moving = speed_now > 0.3
+## ====================================================================
+##                        HP SYSTEM FUNCTIONS
+## ====================================================================
 
-	# Update both booleans
-	anim_tree.set("parameters/conditions/walk", moving)
-	anim_tree.set("parameters/conditions/idle", not moving)
+## 💥 Function to inflict damage
+func take_damage(amount: int) -> void:
+	if current_health <= 0:
+		return # Already dead
+
+	current_health = max(0, current_health - amount)
+	health_changed.emit(current_health) 
+
+	if current_health == 0:
+		die()
+
+## 💚 Function to heal the patient
+func heal(amount: int) -> void:
+	if current_health <= 0:
+		return 
+
+	current_health = min(max_health, current_health + amount)
+	health_changed.emit(current_health) 
+
+## 💀 Function for when the patient dies (Disappears Safely)
+func die() -> void:
+	# Stop all processing and timers immediately
+	hp_timer.stop()
+	
+	# ⭐ GODOT 4 FIX: Use set_physics_process()
+	set_physics_process(false) 
+	set_process(false) 
+
+	# Stop movement and velocity instantly
+	moving_to_location = false
+	following = false
+	velocity = Vector3.ZERO 
+
+	# Emit signal for game management
+	died.emit()
+	
+	print("Patient has died and is queued for removal.")
+
+	# Use call_deferred to ensure the node is freed safely (reliably disappears)
+	call_deferred("queue_free") 
+
+## ⏱️ Timer timeout logic (Damage Over Time)
+func _on_hp_timer_timeout() -> void:
+	# Inflict the damage defined by damage_per_second
+	take_damage(damage_per_second)
+	
+	# Restart the timer if the patient is still alive (since it's a One-Shot)
+	if current_health > 0:
+		hp_timer.start()
 
 
-# === API ===
+## ====================================================================
+##                        MOVEMENT API FUNCTIONS
+## ====================================================================
+
+func move_to_location(target_position: Vector3) -> void:
+	moving_to_location = true
+	agent.target_position = target_position
+
 func start_follow(new_target: Node3D) -> void:
 	if new_target:
 		target = new_target
@@ -106,3 +180,17 @@ func toggle_follow(new_target: Node3D) -> void:
 		stop_follow()
 	else:
 		start_follow(new_target)
+
+
+## ====================================================================
+##                        ANIMATION FUNCTIONS
+## ====================================================================
+
+# === ANIMATION LOGIC (WALK & IDLE BOOL) ===
+func _update_animation():
+	var speed_now = Vector3(velocity.x, 0, velocity.z).length()
+	var moving = speed_now > 0.3
+
+	# Update both booleans
+	anim_tree.set("parameters/conditions/walk", moving)
+	anim_tree.set("parameters/conditions/idle", not moving)

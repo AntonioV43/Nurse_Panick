@@ -791,6 +791,7 @@ transitions = ["Start", "IrengAnim_Idle", SubResource("AnimationNodeStateMachine
 
 [node name="Pasien" type="CharacterBody3D" groups=["pasien"]]
 script = ExtResource("1_mhqvh")
+damage_per_second = 20
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -812,3 +813,5 @@ tree_root = SubResource("AnimationNodeStateMachine_868md")
 anim_player = NodePath("../Ireng/AnimationPlayer")
 parameters/conditions/idle = false
 parameters/conditions/walk = false
+
+[node name="HPTimer" type="Timer" parent="."]

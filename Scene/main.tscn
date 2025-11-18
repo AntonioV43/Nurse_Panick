@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfu8csu03hvgy"]
+[gd_scene load_steps=14 format=3 uid="uid://dfu8csu03hvgy"]
 
 [ext_resource type="Texture2D" uid="uid://do01si3a4lx5p" path="res://assets/Skybox/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_2wwxx"]
 [ext_resource type="Script" uid="uid://b2xlmbeob4880" path="res://script/player.gd" id="3_3amdw"]
@@ -19,8 +19,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r34rm"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2wwxx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2wwxx"]
 height = 1.2
@@ -53,10 +51,6 @@ script = ExtResource("3_3amdw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_r34rm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="player/standing_collision_shape"]
-mesh = SubResource("CapsuleMesh_2wwxx")
-skeleton = NodePath("../..")
-
 [node name="crouching_collision_shape" type="CollisionShape3D" parent="player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 shape = SubResource("CapsuleShape3D_2wwxx")
@@ -86,7 +80,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 3.3552728)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 0)
 script = ExtResource("5_3amdw")
 patient_scene = ExtResource("4_2wwxx")
-max_patients = 15
 
 [node name="summonPos" type="Node3D" parent="PatientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.938101, 0, -9.851)

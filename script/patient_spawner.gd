@@ -8,7 +8,7 @@ extends Node3D
 @export var max_patients: int = 10
 
 var spawn_timer: float = 0.0
-var current_patients: int = 0
+var current_patients: int = 0	
 
 func _process(delta):
 	spawn_timer += delta
@@ -22,7 +22,10 @@ func spawn_patient():
 	get_tree().current_scene.add_child(patient)
 	patient.global_transform.origin = summon_pos.global_transform.origin
 	current_patients += 1
-
+	if patient.has_node("HPTimer"):
+		var hp_timer = patient.get_node("HPTimer")
+		hp_timer.start()
+		print("DEBUG: HPTimer started for new patient.")
 	var random_pos = get_random_point_in_area(waiting_area)
 	if patient.has_method("move_to_location"):
 		patient.move_to_location(random_pos)
