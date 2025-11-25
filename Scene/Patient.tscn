@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cigneymlaf4xu"]
+[gd_scene load_steps=19 format=3 uid="uid://cigneymlaf4xu"]
 
 [ext_resource type="Script" uid="uid://ofwl0y23ruxe" path="res://script/patient.gd" id="1_mhqvh"]
 [ext_resource type="PackedScene" uid="uid://2h3eqwlmbwbg" path="res://assets/Animation/Ireng.glb" id="2_b6bir"]
+[ext_resource type="Texture2D" uid="uid://broq4qg2tv1w2" path="res://assets/textures/Bar/BG.png" id="3_b71q8"]
+[ext_resource type="Texture2D" uid="uid://6h6yokoceuls" path="res://assets/textures/Bar/S.png" id="4_868md"]
+[ext_resource type="Script" uid="uid://brdwrh64kl711" path="res://script/Healthbar.gd" id="4_eiev2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w6wah"]
 
@@ -789,9 +792,22 @@ states/IrengAnim_Walk/node = SubResource("AnimationNodeAnimation_1ttwp")
 states/IrengAnim_Walk/position = Vector2(646, 56)
 transitions = ["Start", "IrengAnim_Idle", SubResource("AnimationNodeStateMachineTransition_eiev2"), "IrengAnim_Idle", "IrengAnim_Walk", SubResource("AnimationNodeStateMachineTransition_b71q8"), "IrengAnim_Walk", "IrengAnim_Idle", SubResource("AnimationNodeStateMachineTransition_b6bir")]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_eiev2"]
+viewport_path = NodePath("HealthBar3D/HPViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b71q8"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_eiev2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_eiev2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_b71q8")
+size = Vector2(0.8, 0.1)
+
 [node name="Pasien" type="CharacterBody3D" groups=["pasien"]]
 script = ExtResource("1_mhqvh")
-damage_per_second = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -815,3 +831,25 @@ parameters/conditions/idle = false
 parameters/conditions/walk = false
 
 [node name="HPTimer" type="Timer" parent="."]
+
+[node name="HealthBar3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+
+[node name="HPViewport" type="SubViewport" parent="HealthBar3D"]
+transparent_bg = true
+size = Vector2i(200, 40)
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthBar3D/HPViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_b71q8")
+texture_progress = ExtResource("4_868md")
+script = ExtResource("4_eiev2")
+
+[node name="HealthBarMesh" type="MeshInstance3D" parent="HealthBar3D"]
+mesh = SubResource("QuadMesh_eiev2")

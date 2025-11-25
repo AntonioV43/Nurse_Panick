@@ -130,7 +130,7 @@ func heal(amount: int) -> void:
 func die() -> void:
 	# Stop all processing and timers immediately
 	hp_timer.stop()
-	
+
 	# ⭐ GODOT 4 FIX: Use set_physics_process()
 	set_physics_process(false) 
 	set_process(false) 
@@ -139,6 +139,16 @@ func die() -> void:
 	moving_to_location = false
 	following = false
 	velocity = Vector3.ZERO 
+
+	var managers = get_tree().get_nodes_in_group("game_manager")
+	var game_manager = null
+	if not managers.is_empty():
+		game_manager = managers[0]
+	if game_manager and game_manager.has_method("patient_failed_to_process"):
+		game_manager.patient_failed_to_process()
+	else:
+		# Peringatan jika tidak ditemukan, sangat berguna untuk debugging
+		push_warning("ERROR: Game Manager/Spawner tidak ditemukan atau fungsi patient_failed_to_process tidak ada.")
 
 	# Emit signal for game management
 	died.emit()
