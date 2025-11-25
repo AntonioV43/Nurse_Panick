@@ -61,10 +61,10 @@ albedo_color = Color(0.7764706, 0.45490196, 0.41960785, 1)
 material = SubResource("StandardMaterial3D_wt603")
 size = Vector3(1.5, 3, 0.05)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bvinm"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_wxsig"]
 font_size = 32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvinm"]
 
 [node name="Sistem_RS" type="Node3D"]
 script = ExtResource("1_dcg5e")
@@ -211,168 +211,6 @@ mesh = SubResource("BoxMesh_droga")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.964, 1.4471393, -4.902)
 mesh = SubResource("BoxMesh_droga")
 
-[node name="sketchfab_" type="Node3D" parent="."]
-
-[node name="Sketchfab_Scene6" parent="sketchfab_" instance=ExtResource("4_d5tbs")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 8.812, 3.307, -14.7)
-
-[node name="Sketchfab_Scene7" parent="sketchfab_" instance=ExtResource("5_s31i2")]
-transform = Transform3D(-8.7422775e-10, 0, 0.06, 0, 0.02, 0, -0.02, 0, -2.6226832e-09, 2.91, 2.312, -9.592)
-
-[node name="Sketchfab_Scene8" parent="sketchfab_" instance=ExtResource("6_d5tbs")]
-transform = Transform3D(-0.09653068, 0, 2.0509942, 0, 2.808, 0, -1.7823879, 0, -0.111077875, 3.094094, 0.19781172, -5.216296)
-
-[node name="Sketchfab_Scene9" parent="sketchfab_" instance=ExtResource("7_wxsig")]
-transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 13.5, -0.065, 13.7)
-
-[node name="Sketchfab_Scene10" parent="sketchfab_" instance=ExtResource("8_liv80")]
-transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 10, 0, 14.5)
-
-[node name="Sketchfab_Scene11" parent="sketchfab_" instance=ExtResource("8_liv80")]
-transform = Transform3D(-0.04, 0, -6.0398317e-09, 0, 0.04, 0, 6.0398317e-09, 0, -0.04, 7, 0, 14.5)
-
-[node name="Sketchfab_Scene12" parent="sketchfab_" instance=ExtResource("9_tx0be")]
-transform = Transform3D(1.86, 0, 0, 0, 1.86, 0, 0, 0, 1.86, 13, 2, 14.7)
-
-[node name="Sketchfab_Scene13" parent="sketchfab_" instance=ExtResource("10_liv80")]
-transform = Transform3D(0.003785523, 0, -0.06989756, 0, 0.07, 0, 0.06989756, 0, 0.003785523, 12, 1.49, 14.5)
-
-[node name="Sketchfab_Scene14" parent="sketchfab_" instance=ExtResource("11_mglld")]
-transform = Transform3D(1.88, 0, 0, 0, 1.88, 0, 0, 0, 1.88, 4, 0, 14)
-
-[node name="Sketchfab_Scene15" parent="sketchfab_" instance=ExtResource("13_j6aws")]
-transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 3.125, 0, 5.2)
-
-[node name="Sketchfab_Scene27" parent="sketchfab_" instance=ExtResource("13_j6aws")]
-transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 3.125, 0, -5.8)
-
-[node name="Sketchfab_Scene16" parent="sketchfab_" instance=ExtResource("14_xuk1m")]
-transform = Transform3D(0.0021631534, 0, 0.03994146, 0, 0.04, 0, -0.03994146, 0, 0.0021631534, 3.25, 0, 6)
-
-[node name="Sketchfab_Scene17" parent="sketchfab_" instance=ExtResource("15_ujpys")]
-transform = Transform3D(-9.004546e-08, 0, -2.06, 0, 2.06, 0, 2.06, 0, -9.004546e-08, 3, 3, 10)
-
-[node name="Sketchfab_Scene18" parent="sketchfab_" instance=ExtResource("16_8mkek")]
-transform = Transform3D(0.054078843, 0, -0.99853665, 0, 1, 0, 0.99853665, 0, 0.054078843, 14.6, 0, -2)
-
-[node name="Sketchfab_Scene19" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -8)
-
-[node name="Sketchfab_Scene28" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -8)
-
-[node name="Sketchfab_Scene29" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -8)
-
-[node name="Sketchfab_Scene20" parent="sketchfab_" instance=ExtResource("5_ujpys")]
-transform = Transform3D(-3.5646636e-07, 0, 5.837, 0, 5.874, 0, -8.155, 0, -2.5514336e-07, -14.700001, -1, -1)
-
-[node name="Sketchfab_Scene21" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 8)
-
-[node name="Sketchfab_Scene22" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 6)
-
-[node name="Sketchfab_Scene23" parent="sketchfab_" instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4)
-
-[node name="Sketchfab_Scene24" parent="sketchfab_" instance=ExtResource("18_who85")]
-transform = Transform3D(-0.009941509, 0, 0.0010799941, 0, 0.01, 0, -0.0010799941, 0, -0.009941509, 14, 0, 10)
-
-[node name="Sketchfab_Scene25" parent="sketchfab_" instance=ExtResource("18_who85")]
-transform = Transform3D(-0.009941509, 0, 0.0010799941, 0, 0.01, 0, -0.0010799941, 0, -0.009941509, 14, 0, 11)
-
-[node name="Sketchfab_Scene26" parent="sketchfab_" instance=ExtResource("19_5xho5")]
-transform = Transform3D(-0.05497162, 0, 2.0992804, 0, 2.1, 0, -2.0992804, 0, -0.05497162, 15.46, 2.5, 8)
-
-[node name="Sketchfab_Scene2" parent="sketchfab_" instance=ExtResource("3_pfv1s")]
-transform = Transform3D(-0.0367372, 2.1043587, 0.036737192, 0, 0.036742788, -2.1046793, -2.1046793, -0.036731604, -0.0006412481, 2.87, 3, 13)
-
-[node name="Sketchfab_Scene" parent="sketchfab_" instance=ExtResource("4_d5tbs")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 3.2150002, 14.5)
-
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("11_tx0be")]
-transform = Transform3D(-0.045, 0, 6.7948114e-09, 0, 0.045, 0, -6.7948114e-09, 0, -0.045, 3.5, 0, 13.5)
-
-[node name="Sketchfab_Scene2" parent="." instance=ExtResource("12_8772i")]
-transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 5, 0, 14.5)
-
-[node name="Sketchfab_Scene16" parent="." instance=ExtResource("19_7cgxo")]
-transform = Transform3D(-4.3711385e-10, 0, 0.009999999, 0, 0.01, 0, -0.009999999, 0, -4.3711385e-10, 2.9, 2.6, 6.1)
-
-[node name="Sketchfab_Scene3" parent="." instance=ExtResource("20_who85")]
-transform = Transform3D(-8.895268e-08, 0, 2.035, 0, 2.035, 0, -2.035, 0, -8.895268e-08, 2.92, 2.8, 14)
-
-[node name="Sketchfab_Scene4" parent="." instance=ExtResource("21_5xho5")]
-transform = Transform3D(-3.5633686e-08, -4.7208015e-09, -1, -0.08855947, 0.99415094, 0, 0.8152038, 0.107999355, -4.371139e-08, 14.77, 3.3, 0)
-
-[node name="Sketchfab_Scene5" parent="." instance=ExtResource("22_xuk1m")]
-transform = Transform3D(-0.057496212, 0, -2.994448, 0, 2.995, 0, 2.994448, 0, -0.057496212, 14.7, 1, -8)
-
-[node name="Sketchfab_Scene6" parent="." instance=ExtResource("23_ujpys")]
-transform = Transform3D(-0.02, 0, -3.0199159e-09, 0, 0.015, 0, 3.0199159e-09, 0, -0.02, 14.1, 0.9, -4)
-
-[node name="Sketchfab_Scene19" parent="." instance=ExtResource("6_d5tbs")]
-transform = Transform3D(0.10491296, 0, -1.3729879, 0, 2.04, 0, 1.9371612, 0, 0.07435841, 13.7, 0.198, -5.25)
-
-[node name="Sketchfab_Scene20" parent="." instance=ExtResource("13_j6aws")]
-transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 14.125, 0, -14)
-
-[node name="Sketchfab_Scene7" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -12)
-
-[node name="Sketchfab_Scene14" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -12)
-
-[node name="Sketchfab_Scene17" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -12)
-
-[node name="Sketchfab_Scene8" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -10)
-
-[node name="Sketchfab_Scene15" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -10)
-
-[node name="Sketchfab_Scene18" parent="." instance=ExtResource("3_pl026")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -10)
-
-[node name="Sketchfab_Scene9" parent="." instance=ExtResource("27_43n5y")]
-transform = Transform3D(3.98, 0, 0, 0, 3.98, 0, 0, 0, 3.98, 9, 2, -14.75)
-
-[node name="Sketchfab_Scene10" parent="." instance=ExtResource("28_43n5y")]
-transform = Transform3D(-1.2195477e-07, 0, 1.505, 0, 1.54, 0, -2.79, 0, -6.578564e-08, 5, 0, -9.5)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene10"]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.6852568, 0)
-shape = SubResource("BoxShape3D_bvinm")
-
-[node name="Sketchfab_Scene11" parent="." instance=ExtResource("29_vqq3o")]
-transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -9.5)
-
-[node name="Sketchfab_Scene13" parent="." instance=ExtResource("29_vqq3o")]
-transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -10.5)
-
-[node name="Sketchfab_Scene12" parent="." instance=ExtResource("29_vqq3o")]
-transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -8.5)
-
-[node name="Sketchfab_Scene22" parent="." instance=ExtResource("30_bvinm")]
-transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 6, 0, -8)
-
-[node name="Sketchfab_Scene23" parent="." instance=ExtResource("30_bvinm")]
-transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 6, 0, -7.1)
-
-[node name="Sketchfab_Scene21" parent="." instance=ExtResource("32_f8pa5")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2, 1.4, -4.87)
-
-[node name="Sketchfab_Scene24" parent="." instance=ExtResource("32_f8pa5")]
-transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -2, 1.4, 4.78)
-
-[node name="Sketchfab_Scene25" parent="." instance=ExtResource("32_f8pa5")]
-transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -11, 1.4, 4.78)
-
-[node name="Sketchfab_Scene27" parent="." instance=ExtResource("32_f8pa5")]
-transform = Transform3D(-1.86, 0, -1.6260637e-07, 0, 1.86, 0, 1.6260637e-07, 0, -1.86, 13, 2, 14.7)
-
 [node name="Teks_Pintu_1" type="Label3D" parent="."]
 transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -2, 3.5, 4.7)
 modulate = Color(1, 0.32156864, 0.28235295, 1)
@@ -425,6 +263,170 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "[F] Masukkan Pasien"
 label_settings = SubResource("LabelSettings_wxsig")
+
+[node name="Dekorasi" type="Node3D" parent="."]
+
+[node name="sketchfab_" type="Node3D" parent="Dekorasi"]
+
+[node name="Sketchfab_Scene6" parent="Dekorasi/sketchfab_" instance=ExtResource("4_d5tbs")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 8.812, 3.307, -14.7)
+
+[node name="Sketchfab_Scene7" parent="Dekorasi/sketchfab_" instance=ExtResource("5_s31i2")]
+transform = Transform3D(-8.7422775e-10, 0, 0.06, 0, 0.02, 0, -0.02, 0, -2.6226832e-09, 2.91, 2.312, -9.592)
+
+[node name="Sketchfab_Scene8" parent="Dekorasi/sketchfab_" instance=ExtResource("6_d5tbs")]
+transform = Transform3D(-0.09653068, 0, 2.0509942, 0, 2.808, 0, -1.7823879, 0, -0.111077875, 3.094094, 0.19781172, -5.216296)
+
+[node name="Sketchfab_Scene9" parent="Dekorasi/sketchfab_" instance=ExtResource("7_wxsig")]
+transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, 13.5, -0.065, 13.7)
+
+[node name="Sketchfab_Scene10" parent="Dekorasi/sketchfab_" instance=ExtResource("8_liv80")]
+transform = Transform3D(-0.04, 0, -3.496911e-09, 0, 0.04, 0, 3.496911e-09, 0, -0.04, 10, 0, 14.5)
+
+[node name="Sketchfab_Scene11" parent="Dekorasi/sketchfab_" instance=ExtResource("8_liv80")]
+transform = Transform3D(-0.04, 0, -6.0398317e-09, 0, 0.04, 0, 6.0398317e-09, 0, -0.04, 7, 0, 14.5)
+
+[node name="Sketchfab_Scene12" parent="Dekorasi/sketchfab_" instance=ExtResource("9_tx0be")]
+transform = Transform3D(1.86, 0, 0, 0, 1.86, 0, 0, 0, 1.86, 13, 2, 14.7)
+
+[node name="Sketchfab_Scene13" parent="Dekorasi/sketchfab_" instance=ExtResource("10_liv80")]
+transform = Transform3D(0.003785523, 0, -0.06989756, 0, 0.07, 0, 0.06989756, 0, 0.003785523, 12, 1.49, 14.5)
+
+[node name="Sketchfab_Scene14" parent="Dekorasi/sketchfab_" instance=ExtResource("11_mglld")]
+transform = Transform3D(1.88, 0, 0, 0, 1.88, 0, 0, 0, 1.88, 4, 0, 14)
+
+[node name="Sketchfab_Scene15" parent="Dekorasi/sketchfab_" instance=ExtResource("13_j6aws")]
+transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 3.125, 0, 5.2)
+
+[node name="Sketchfab_Scene27" parent="Dekorasi/sketchfab_" instance=ExtResource("13_j6aws")]
+transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 3.125, 0, -5.8)
+
+[node name="Sketchfab_Scene16" parent="Dekorasi/sketchfab_" instance=ExtResource("14_xuk1m")]
+transform = Transform3D(0.0021631534, 0, 0.03994146, 0, 0.04, 0, -0.03994146, 0, 0.0021631534, 3.25, 0, 6)
+
+[node name="Sketchfab_Scene17" parent="Dekorasi/sketchfab_" instance=ExtResource("15_ujpys")]
+transform = Transform3D(-9.004546e-08, 0, -2.06, 0, 2.06, 0, 2.06, 0, -9.004546e-08, 3, 3, 10)
+
+[node name="Sketchfab_Scene18" parent="Dekorasi/sketchfab_" instance=ExtResource("16_8mkek")]
+transform = Transform3D(0.054078843, 0, -0.99853665, 0, 1, 0, 0.99853665, 0, 0.054078843, 14.6, 0, -2)
+
+[node name="Sketchfab_Scene19" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -8)
+
+[node name="Sketchfab_Scene28" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -8)
+
+[node name="Sketchfab_Scene29" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -8)
+
+[node name="Sketchfab_Scene20" parent="Dekorasi/sketchfab_" instance=ExtResource("5_ujpys")]
+transform = Transform3D(-3.5646636e-07, 0, 5.837, 0, 5.874, 0, -8.155, 0, -2.5514336e-07, -14.700001, -1, -1)
+
+[node name="Sketchfab_Scene21" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 8)
+
+[node name="Sketchfab_Scene22" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 6)
+
+[node name="Sketchfab_Scene23" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4)
+
+[node name="Sketchfab_Scene24" parent="Dekorasi/sketchfab_" instance=ExtResource("18_who85")]
+transform = Transform3D(-0.009941509, 0, 0.0010799941, 0, 0.01, 0, -0.0010799941, 0, -0.009941509, 14, 0, 10)
+
+[node name="Sketchfab_Scene25" parent="Dekorasi/sketchfab_" instance=ExtResource("18_who85")]
+transform = Transform3D(-0.009941509, 0, 0.0010799941, 0, 0.01, 0, -0.0010799941, 0, -0.009941509, 14, 0, 11)
+
+[node name="Sketchfab_Scene26" parent="Dekorasi/sketchfab_" instance=ExtResource("19_5xho5")]
+transform = Transform3D(-0.05497162, 0, 2.0992804, 0, 2.1, 0, -2.0992804, 0, -0.05497162, 15.46, 2.5, 8)
+
+[node name="Sketchfab_Scene2" parent="Dekorasi/sketchfab_" instance=ExtResource("3_pfv1s")]
+transform = Transform3D(-0.0367372, 2.1043587, 0.036737192, 0, 0.036742788, -2.1046793, -2.1046793, -0.036731604, -0.0006412481, 2.87, 3, 13)
+
+[node name="Sketchfab_Scene" parent="Dekorasi/sketchfab_" instance=ExtResource("4_d5tbs")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 8, 3.2150002, 14.5)
+
+[node name="Sketchfab_Scene" parent="Dekorasi" instance=ExtResource("11_tx0be")]
+transform = Transform3D(-0.045, 0, 6.7948114e-09, 0, 0.045, 0, -6.7948114e-09, 0, -0.045, 3.5, 0, 13.5)
+
+[node name="Sketchfab_Scene2" parent="Dekorasi" instance=ExtResource("12_8772i")]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 5, 0, 14.5)
+
+[node name="Sketchfab_Scene16" parent="Dekorasi" instance=ExtResource("19_7cgxo")]
+transform = Transform3D(-4.3711385e-10, 0, 0.009999999, 0, 0.01, 0, -0.009999999, 0, -4.3711385e-10, 2.9, 2.6, 6.1)
+
+[node name="Sketchfab_Scene3" parent="Dekorasi" instance=ExtResource("20_who85")]
+transform = Transform3D(-8.895268e-08, 0, 2.035, 0, 2.035, 0, -2.035, 0, -8.895268e-08, 2.92, 2.8, 14)
+
+[node name="Sketchfab_Scene4" parent="Dekorasi" instance=ExtResource("21_5xho5")]
+transform = Transform3D(-3.5633686e-08, -4.7208015e-09, -1, -0.08855947, 0.99415094, 0, 0.8152038, 0.107999355, -4.371139e-08, 14.77, 3.3, 0)
+
+[node name="Sketchfab_Scene5" parent="Dekorasi" instance=ExtResource("22_xuk1m")]
+transform = Transform3D(-0.057496212, 0, -2.994448, 0, 2.995, 0, 2.994448, 0, -0.057496212, 14.7, 1, -8)
+
+[node name="Sketchfab_Scene6" parent="Dekorasi" instance=ExtResource("23_ujpys")]
+transform = Transform3D(-0.02, 0, -3.0199159e-09, 0, 0.015, 0, 3.0199159e-09, 0, -0.02, 14.1, 0.9, -4)
+
+[node name="Sketchfab_Scene19" parent="Dekorasi" instance=ExtResource("6_d5tbs")]
+transform = Transform3D(0.10491296, 0, -1.3729879, 0, 2.04, 0, 1.9371612, 0, 0.07435841, 13.7, 0.198, -5.25)
+
+[node name="Sketchfab_Scene20" parent="Dekorasi" instance=ExtResource("13_j6aws")]
+transform = Transform3D(1.305, 0, 0, 0, 1.305, 0, 0, 0, 1.305, 14.125, 0, -14)
+
+[node name="Sketchfab_Scene7" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -12)
+
+[node name="Sketchfab_Scene14" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -12)
+
+[node name="Sketchfab_Scene17" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -12)
+
+[node name="Sketchfab_Scene8" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -10)
+
+[node name="Sketchfab_Scene15" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -10)
+
+[node name="Sketchfab_Scene18" parent="Dekorasi" instance=ExtResource("3_pl026")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -10)
+
+[node name="Sketchfab_Scene9" parent="Dekorasi" instance=ExtResource("27_43n5y")]
+transform = Transform3D(3.98, 0, 0, 0, 3.98, 0, 0, 0, 3.98, 9, 2, -14.75)
+
+[node name="Sketchfab_Scene10" parent="Dekorasi" instance=ExtResource("28_43n5y")]
+transform = Transform3D(-1.2195477e-07, 0, 1.505, 0, 1.54, 0, -2.79, 0, -6.578564e-08, 5, 0, -9.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dekorasi/Sketchfab_Scene10"]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0.6852568, 0)
+shape = SubResource("BoxShape3D_bvinm")
+
+[node name="Sketchfab_Scene11" parent="Dekorasi" instance=ExtResource("29_vqq3o")]
+transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -9.5)
+
+[node name="Sketchfab_Scene13" parent="Dekorasi" instance=ExtResource("29_vqq3o")]
+transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -10.5)
+
+[node name="Sketchfab_Scene12" parent="Dekorasi" instance=ExtResource("29_vqq3o")]
+transform = Transform3D(-7.8024826e-08, 0, 1.785, 0, 1.785, 0, -1.785, 0, -7.8024826e-08, 4, 0, -8.5)
+
+[node name="Sketchfab_Scene22" parent="Dekorasi" instance=ExtResource("30_bvinm")]
+transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 6, 0, -8)
+
+[node name="Sketchfab_Scene23" parent="Dekorasi" instance=ExtResource("30_bvinm")]
+transform = Transform3D(1.625, 0, 0, 0, 1.625, 0, 0, 0, 1.625, 6, 0, -7.1)
+
+[node name="Sketchfab_Scene21" parent="Dekorasi" instance=ExtResource("32_f8pa5")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2, 1.4, -4.87)
+
+[node name="Sketchfab_Scene24" parent="Dekorasi" instance=ExtResource("32_f8pa5")]
+transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -2, 1.4, 4.78)
+
+[node name="Sketchfab_Scene25" parent="Dekorasi" instance=ExtResource("32_f8pa5")]
+transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -11, 1.4, 4.78)
+
+[node name="Sketchfab_Scene27" parent="Dekorasi" instance=ExtResource("32_f8pa5")]
+transform = Transform3D(-1.86, 0, -1.6260637e-07, 0, 1.86, 0, 1.6260637e-07, 0, -1.86, 13, 2, 14.7)
 
 [connection signal="timeout" from="Timer_1" to="." method="_on_timer_1_timeout"]
 [connection signal="timeout" from="Timer_2" to="." method="_on_timer_2_timeout"]

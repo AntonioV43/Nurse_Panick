@@ -1,106 +1,79 @@
 extends Node3D
 
+# --- KONFIGURASI ---
+@export_group("Settings")
 @export var patient_scene: PackedScene
+@export var end_menu_scene: PackedScene
+
+# --- REFERENSI NODE ---
 @onready var summon_pos: Node3D = $summonPos
 @onready var waiting_area: Area3D = $movePos
+@onready var spawn_timer: Timer = $SpawnTimer
 
-@export var end_menu_scene: PackedScene
-@export var spawn_interval: float = 5.0
-@export var max_patients: int = 10
+# --- DATA STATISTIK ---
+var processed_count: int = 0 
+var failed_count: int = 0
+var total_spawned: int = 0
 
-var patients_processed_count: int = 0 
-var patients_failed_count: int = 0
+func _ready() -> void:
+	if spawn_timer:
+		spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+		spawn_timer.start()
+		print("Spawner Stabil Dimulai. Waktu per spawn: ", spawn_timer.wait_time)
 
-var spawn_timer: float = 0.0
-var current_patients: int = 0	
+func _on_spawn_timer_timeout() -> void:
+	spawn_patient()
+	
+	# CATATAN: Logika pengurangan waktu SUDAH DIHAPUS.
+	# Waktu spawn akan tetap stabil sesuai settingan Timer awal (5 detik).
+	print("Next spawn in: ", spawn_timer.wait_time)
 
-func _process(delta):
-	spawn_timer += delta
-	if spawn_timer >= spawn_interval:
-		spawn_timer = 0.0
-		if current_patients < max_patients:
-			spawn_patient()
+func spawn_patient() -> void:
+	if not patient_scene: return
 
-func spawn_patient():
 	var patient = patient_scene.instantiate()
 	get_tree().current_scene.add_child(patient)
-	patient.global_transform.origin = summon_pos.global_transform.origin
-	current_patients += 1
-	if patient.has_node("HPTimer"):
-		var hp_timer = patient.get_node("HPTimer")
-		hp_timer.start()
-		print("DEBUG: HPTimer started for new patient.")
-	var random_pos = get_random_point_in_area(waiting_area)
-	if patient.has_method("move_to_location"):
-		patient.move_to_location(random_pos)
-
-	print("Spawned patient #", current_patients, "→ Moving to:", random_pos)
-
-# 🔹 Helper: pick a random point inside Area3D bounds
-func get_random_point_in_area(area: Area3D) -> Vector3:
-	var shape = area.get_node("CollisionShape3D").shape
-	if shape is BoxShape3D:
-		var extents = shape.size / 2.0
-		var local_point = Vector3(
-			randf_range(-extents.x, extents.x),
-			0,
-			randf_range(-extents.z, extents.z)
-		)
-		return area.global_transform.origin + local_point
-	else:
-		push_warning("WaitingArea must use a BoxShape3D for random point selection.")
-		return area.global_transform.origin
-
-func patient_successfully_processed():
-	patients_processed_count += 1
-	print("Patient Processed. Total Success: ", patients_processed_count)
 	
-	check_end_game_condition() # Ganti nama fungsi pengecekan
-
-func patient_failed_to_process():
-	patients_failed_count += 1
-	print("Patient Failed (Died). Total Failed: ", patients_failed_count)
+	# Setup Posisi & HP
+	patient.global_position = summon_pos.global_position
+	if patient.has_node("HPTimer"): patient.get_node("HPTimer").start()
 	
-	check_end_game_condition() # Cek akhir game
+	# Setup Gerakan ke Waiting Area
+	var random_pos = get_random_point(waiting_area)
+	if patient.has_method("move_to_location"): patient.move_to_location(random_pos)
 
-func check_end_game_condition():
-	# Kondisi 1: Pastikan semua pasien yang seharusnya sudah di-spawn
-	if current_patients < max_patients:
-		return # Belum selesai spawn, jadi game belum berakhir
-	
-	var total_handled = patients_processed_count + patients_failed_count
-	
-	# Kondisi Akhir Game: Jumlah pasien yang *ditangani* (sukses + gagal) 
-	# sama dengan total pasien yang harus di-spawn (max_patients)
-	if total_handled == max_patients:
-		if patients_processed_count == max_patients:
-			# SEMUA SUKSES = MENANG
-			print("GAME END: WIN CONDITION MET! All patients processed.")
-			end_game(true)
-		else:
-			# ADA YANG GAGAL = KALAH
-			print("GAME END: LOSS CONDITION MET! Patients failed.")
-			end_game(false)
-			
+	total_spawned += 1
 
-func end_game(is_win: bool):
-	set_process(false)
+# Fungsi Helper: Ambil titik acak dalam kotak Area3D
+func get_random_point(area: Area3D) -> Vector3:
+	var shape = area.get_node_or_null("CollisionShape3D").shape as BoxShape3D
+	if not shape: return area.global_position
+	
+	var extents = shape.size / 2.0
+	return area.global_position + Vector3(
+		randf_range(-extents.x, extents.x), 0, randf_range(-extents.z, extents.z)
+	)
+
+# --- LOGIKA GAME ---
+func patient_successfully_processed() -> void:
+	processed_count += 1
+	print("Sukses: %d" % processed_count)
+
+func patient_failed_to_process() -> void:
+	failed_count += 1
+	print("Gagal: %d" % failed_count)
+	
+	# Kondisi Kalah (Misal: 5 Pasien Mati)
+	if failed_count >= 5: end_game(false)
+
+func end_game(is_win: bool) -> void:
+	if spawn_timer: spawn_timer.stop()
+	
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	if end_menu_scene == null:
-		push_error("End Menu Scene belum di-assign!")
-		return
-
-	var end_menu = end_menu_scene.instantiate()
-	get_tree().root.add_child(end_menu) # Ganti add_child ke root untuk menghindari masalah
 	
-	if end_menu.has_method("set_end_screen_data"):
-		var total_patients_saved = patients_processed_count
-		var total_patients_failed = patients_failed_count
-		var total_max_patients = max_patients
-		
-		# Kirim data pasien yang selamat
-		end_menu.set_end_screen_data(is_win, total_patients_saved, total_patients_failed, total_max_patients)
-		
-	# Hapus scene game lama
-	get_tree().current_scene.call_deferred("queue_free")
+	if end_menu_scene:
+		var menu = end_menu_scene.instantiate()
+		get_tree().root.add_child(menu)
+		if menu.has_method("set_end_screen_data"):
+			menu.set_end_screen_data(is_win, processed_count, failed_count, total_spawned)
