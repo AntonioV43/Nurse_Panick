@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b2eryt8iq8gy4"]
+[gd_scene load_steps=10 format=3 uid="uid://b2eryt8iq8gy4"]
 
 [ext_resource type="Script" uid="uid://c8oxrleooj7a8" path="res://script/main_menu.gd" id="1_hii65"]
 [ext_resource type="Texture2D" uid="uid://b5251tes6fnby" path="res://assets/textures/backgroundpink.jpg" id="2_kqsxi"]
+[ext_resource type="FontFile" uid="uid://cyva73u2vpihn" path="res://assets/Font/font3.ttf" id="3_kqsxi"]
 [ext_resource type="FontFile" uid="uid://vf1s7pbsf3p1" path="res://assets/Font/Death Bones.ttf" id="3_pvidh"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jix8l"]
@@ -109,15 +110,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.514
 anchor_bottom = 0.527
-offset_left = -213.0
-offset_top = -252.0
-offset_right = 188.87201
-offset_bottom = -154.496
+offset_left = -237.0
+offset_top = -226.0
+offset_right = 192.87201
+offset_bottom = -128.496
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_constants/shadow_offset_x = 10
-theme_override_fonts/font = ExtResource("3_pvidh")
+theme_override_fonts/font = ExtResource("3_kqsxi")
 theme_override_font_sizes/font_size = 86
 text = "Nurse Panick"
 horizontal_alignment = 1
@@ -148,5 +149,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_exit_pressed"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0p0526csuka4"]
+
+[ext_resource type="AudioStream" uid="uid://ptjvpwl1myfk" path="res://way-out-of-a-critical-situation-247570.mp3" id="1_p1osb"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_p1osb")
+volume_db = -10.0
+autoplay = true
