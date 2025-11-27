@@ -71,6 +71,8 @@ size = Vector3(1.5, 3, 0.05)
 [sub_resource type="LabelSettings" id="LabelSettings_wxsig"]
 font_size = 32
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_bvinm"]
+
 [node name="Sistem_RS" type="Node3D"]
 script = ExtResource("1_dcg5e")
 waktu_pintu_1 = 15.0
@@ -220,7 +222,60 @@ mesh = SubResource("BoxMesh_droga")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.964, 1.4471393, -4.902)
 mesh = SubResource("BoxMesh_droga")
 
-[node name="sketchfab_" type="Node3D" parent="."]
+[node name="Teks_Pintu_1" type="Label3D" parent="."]
+transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -2, 3.5, 4.7)
+modulate = Color(1, 0.32156864, 0.28235295, 1)
+text = "KOSONG"
+
+[node name="Teks_Pintu_2" type="Label3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 3.5, -4.85)
+modulate = Color(1, 0.32156864, 0.28235295, 1)
+text = "KOSONG"
+
+[node name="Teks_Pintu_3" type="Label3D" parent="."]
+transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -11, 3.5, 4.7)
+modulate = Color(1, 0.32156864, 0.28235295, 1)
+text = "KOSONG"
+
+[node name="Teks_Pintu_4" type="Label3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -11, 3.5, -4.85)
+modulate = Color(1, 0.32156864, 0.28235295, 1)
+text = "KOSONG"
+
+[node name="Timer_1" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer_2" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer_3" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Timer_4" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label_Interaksi" type="Label" parent="CanvasLayer"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "[F] Masukkan Pasien"
+label_settings = SubResource("LabelSettings_wxsig")
+
+[node name="Dekorasi" type="Node3D" parent="."]
 
 [node name="Sketchfab_Scene" parent="sketchfab_" instance=ExtResource("5_i3lfl")]
 transform = Transform3D(0.6341296, 0, 0.033233363, 0, 0.63499975, 0, -0.033233363, 0, 0.6341296, -12.3, 2.8, -4.9)

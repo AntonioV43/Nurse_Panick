@@ -126,6 +126,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4940224, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PatientSpawner/movePos"]
 shape = SubResource("BoxShape3D_1xcnr")
 
+[node name="SpawnTimer" type="Timer" parent="PatientSpawner"]
+wait_time = 5.0
+
 [connection signal="body_entered" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_entered"]
 [connection signal="body_exited" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_exited"]
 [connection signal="body_entered" from="Gedung_RS/Sensor_2" to="Gedung_RS" method="_on_sensor_2_body_entered"]
