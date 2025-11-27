@@ -114,6 +114,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 0)
 script = ExtResource("5_3amdw")
 patient_scene = ExtResource("4_2wwxx")
 end_menu_scene = ExtResource("6_1xcnr")
+spawn_interval = 1.0
+max_patients = 4
 
 [node name="summonPos" type="Node3D" parent="PatientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.938101, 0, -9.851)
