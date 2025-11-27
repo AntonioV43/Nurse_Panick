@@ -114,8 +114,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 0)
 script = ExtResource("5_3amdw")
 patient_scene = ExtResource("4_2wwxx")
 end_menu_scene = ExtResource("6_1xcnr")
-spawn_interval = 1.0
-max_patients = 2
 
 [node name="summonPos" type="Node3D" parent="PatientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.938101, 0, -9.851)
@@ -125,6 +123,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4940224, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PatientSpawner/movePos"]
 shape = SubResource("BoxShape3D_1xcnr")
+
+[node name="SpawnTimer" type="Timer" parent="PatientSpawner"]
+wait_time = 5.0
 
 [connection signal="body_entered" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_entered"]
 [connection signal="body_exited" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_exited"]
