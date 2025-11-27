@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://c40ixpwd02pnh"]
+
+[ext_resource type="Script" uid="uid://ce4vg25t4t4pj" path="res://Scene/howto_play.gd" id="1_b8lmg"]
+[ext_resource type="Texture2D" uid="uid://b5251tes6fnby" path="res://assets/textures/backgroundpink.jpg" id="2_madm0"]
+[ext_resource type="FontFile" uid="uid://cyva73u2vpihn" path="res://assets/Font/font3.ttf" id="3_madm0"]
+[ext_resource type="Texture2D" uid="uid://cqg6da6gsvju8" path="res://AssetRS/how to play.png" id="4_madm0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jix8l"]
+texture = ExtResource("2_madm0")
+modulate_color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+bg_color = Color(6.148801, 6.1488004, 6.1488004, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+bg_color = Color(4.091555, 4.0915556, 4.091555, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+bg_color = Color(0.22352941, 0.015686275, 0.13333334, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b8lmg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_jix8l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 226.0
+offset_right = 187.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 9
+
+[node name="close" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.080783166, 0.08078342, 0.080783226, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+text = "Close"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.514
+anchor_bottom = 0.527
+offset_left = -224.0
+offset_top = -312.0
+offset_right = 206.87201
+offset_bottom = -214.496
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
+theme_override_constants/shadow_offset_x = 10
+theme_override_fonts/font = ExtResource("3_madm0")
+theme_override_font_sizes/font_size = 70
+text = "How to Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HowToPlay" type="Sprite2D" parent="."]
+position = Vector2(570.00006, 340)
+scale = Vector2(0.40332842, 0.42304686)
+texture = ExtResource("4_madm0")
+
+[connection signal="pressed" from="VBoxContainer/close" to="." method="_on_button_2_pressed"]
