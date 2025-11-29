@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bwak085b1d467"]
+[gd_scene load_steps=47 format=3 uid="uid://bwak085b1d467"]
 
 [ext_resource type="Script" uid="uid://biugua7u0grfs" path="res://script/hospital.gd" id="1_dcg5e"]
 [ext_resource type="Texture2D" uid="uid://gglyvduslmo0" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_lthse"]
@@ -67,6 +67,17 @@ size = Vector3(1.5, 3, 0.05)
 
 [sub_resource type="LabelSettings" id="LabelSettings_wxsig"]
 font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_cfhey"]
+font_size = 24
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i3lfl"]
+font_size = 24
+font_color = Color(0.9764706, 0.8392157, 0, 1)
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Sistem_RS" type="Node3D"]
 script = ExtResource("1_dcg5e")
@@ -257,19 +268,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, -7.8999996)
 [node name="Node3D16" parent="NavigationRegion3D" instance=ExtResource("31_7p4sq")]
 transform = Transform3D(-1.2195477e-07, 0, 1.505, 0, 1.5399998, 0, -2.79, 0, -6.578564e-08, 5.4, 0, -6.5)
 
-[node name="Node3D17" parent="NavigationRegion3D"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(-0.045, 0, -3.7252903e-09, 0, 0.045, 0, 3.7252903e-09, 0, -0.045, 3.5, 0.077, 12.96)
-script = null
-
 [node name="Node3D18" parent="NavigationRegion3D" instance=ExtResource("31_bvinm")]
 transform = Transform3D(-0.04, 0, 9.313226e-10, 0, 0.04, 0, -9.313226e-10, 0, -0.04, 5, 0, 14)
 
@@ -411,6 +409,24 @@ grow_vertical = 0
 text = "[F] Masukkan Pasien"
 label_settings = SubResource("LabelSettings_wxsig")
 
+[node name="Label_Statistik" type="Label" parent="CanvasLayer" groups=["stats_ui"]]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -331.0
+offset_right = -38.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "Selamat: 0 | Meninggal: 0"
+label_settings = SubResource("LabelSettings_cfhey")
+
+[node name="Label_HighScore" type="Label" parent="CanvasLayer" groups=["highscore_ui"]]
+offset_left = 23.0
+offset_right = 100.0
+offset_bottom = 34.0
+text = "Best: 0"
+label_settings = SubResource("LabelSettings_i3lfl")
+
 [node name="Dekorasi" type="Node3D" parent="."]
 
 [node name="sketchfab_#Sketchfab_Scene" parent="." instance=ExtResource("5_i3lfl")]
@@ -481,42 +497,6 @@ transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0
 
 [node name="pintu4" parent="." instance=ExtResource("32_f8pa5")]
 transform = Transform3D(-0.2, 0, -1.7484556e-08, 0, 0.2, 0, 1.7484556e-08, 0, -0.2, -11, 1.4, 4.78)
-
-[node name="Teks_Pintu_5" type="Label3D" parent="."]
-transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -2, 3.5, 4.7)
-modulate = Color(1, 0.32156864, 0.28235295, 1)
-text = "KOSONG"
-
-[node name="Teks_Pintu_6" type="Label3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -2, 3.5, -4.85)
-modulate = Color(1, 0.32156864, 0.28235295, 1)
-text = "KOSONG"
-
-[node name="Teks_Pintu_7" type="Label3D" parent="."]
-transform = Transform3D(-1.5, 0, 2.2649371e-07, 0, 1.5, 0, -2.2649371e-07, 0, -1.5, -11, 3.5, 4.7)
-modulate = Color(1, 0.32156864, 0.28235295, 1)
-text = "KOSONG"
-
-[node name="Teks_Pintu_8" type="Label3D" parent="."]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -11, 3.5, -4.85)
-modulate = Color(1, 0.32156864, 0.28235295, 1)
-text = "KOSONG"
-
-[node name="Timer_5" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
-[node name="Timer_6" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
-[node name="Timer_7" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
-[node name="Timer_8" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

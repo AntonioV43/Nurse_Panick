@@ -109,7 +109,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.164659, 0, -3.7739894)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8648291, 0.5, 0.36230755)
 shape = SubResource("BoxShape3D_3amdw")
 
-[node name="PatientSpawner" type="Node3D" parent="." groups=["game_manager"]]
+[node name="PatientSpawner" type="Node3D" parent="." groups=["game_manager", "spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 0)
 script = ExtResource("5_3amdw")
 patient_scene = ExtResource("4_2wwxx")

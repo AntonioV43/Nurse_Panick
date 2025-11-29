@@ -20,10 +20,25 @@ var moving_to_location: bool = false
 var current_health: int = 0
 signal health_changed(new_health: int)
 signal died
-@export var damage_per_second: int = 1 
+@export var damage_per_second: int = 1
 
 ## === Timer ===
 @onready var hp_timer: Timer = $HPTimer
+
+## === [BARU] COLOR SYSTEM ===
+# Variabel untuk menyimpan tipe warna pasien
+@export var patient_type: String = "" 
+
+# Peta warna (bisa diubah di sini sesuai selera)
+var color_map = {
+	"merah": Color(1, 0.2, 0.2),   # Merah (Kritis)
+	"biru": Color(0.2, 0.2, 1),    # Biru (Flu)
+	"hijau": Color(0.2, 1, 0.2),   # Hijau (Racun)
+	"kuning": Color(1, 1, 0.2)     # Kuning (Hati)
+}
+
+# Referensi Mesh untuk diubah warnanya
+@onready var body_mesh = $Ireng/Armature/GeneralSkeleton/Ch28_Hoody
 
 
 ## ====================================================================
@@ -31,15 +46,17 @@ signal died
 ## ====================================================================
 
 func _ready() -> void:
+	# [BARU] Acak tipe pasien saat lahir
+	randomize_patient_type()
+	
 	# HP Initialization
 	current_health = max_health
 	health_changed.emit(current_health)
 	
 	# Connect the Timer signal
-	hp_timer.timeout.connect(_on_hp_timer_timeout)
+	if not hp_timer.timeout.is_connected(_on_hp_timer_timeout):
+		hp_timer.timeout.connect(_on_hp_timer_timeout)
 	
-	# ⭐ CRITICAL FIX: Start the timer manually to guarantee damage over time begins 
-	# even when the patient is spawned/instantiated from another script.
 	hp_timer.start()
 	
 	# Navigation setup
@@ -50,6 +67,31 @@ func _ready() -> void:
 	agent.path_max_distance = 0.5
 	agent.path_postprocessing = NavigationPathQueryParameters3D.PATH_POSTPROCESSING_CORRIDORFUNNEL
 
+# [BARU] Fungsi untuk mengacak tipe dan warna
+func randomize_patient_type():
+	var types = ["merah", "biru", "hijau", "kuning"]
+	patient_type = types.pick_random()
+	
+	# Ubah visual
+	apply_color(patient_type)
+	
+	# Ubah kesulitan berdasarkan warna (Contoh: Merah lebih cepat mati)
+	if patient_type == "merah":
+		damage_per_second = randi_range(3, 5) # Kritis
+	else:
+		damage_per_second = randi_range(1, 2) # Normal
+
+# [BARU] Fungsi mengubah warna mesh
+func apply_color(type_name: String):
+	if body_mesh:
+		# Buat material baru agar unik per pasien
+		var new_mat = StandardMaterial3D.new()
+		new_mat.albedo_color = color_map[type_name]
+		
+		# Override material yang ada
+		body_mesh.material_override = new_mat
+	else:
+		print("Warning: Body Mesh tidak ditemukan untuk diwarnai.")
 
 func _physics_process(delta: float) -> void:
 	# Gravity
@@ -107,38 +149,31 @@ func _physics_process(delta: float) -> void:
 ##                        HP SYSTEM FUNCTIONS
 ## ====================================================================
 
-## 💥 Function to inflict damage
 func take_damage(amount: int) -> void:
 	if current_health <= 0:
-		return # Already dead
+		return 
 
 	current_health = max(0, current_health - amount)
-	health_changed.emit(current_health) 
+	health_changed.emit(current_health)
 
 	if current_health == 0:
 		die()
 
-## 💚 Function to heal the patient
 func heal(amount: int) -> void:
 	if current_health <= 0:
-		return 
+		return
 
 	current_health = min(max_health, current_health + amount)
-	health_changed.emit(current_health) 
+	health_changed.emit(current_health)
 
-## 💀 Function for when the patient dies (Disappears Safely)
 func die() -> void:
-	# Stop all processing and timers immediately
 	hp_timer.stop()
+	set_physics_process(false)
+	set_process(false)
 
-	# ⭐ GODOT 4 FIX: Use set_physics_process()
-	set_physics_process(false) 
-	set_process(false) 
-
-	# Stop movement and velocity instantly
 	moving_to_location = false
 	following = false
-	velocity = Vector3.ZERO 
+	velocity = Vector3.ZERO
 
 	var managers = get_tree().get_nodes_in_group("game_manager")
 	var game_manager = null
@@ -146,24 +181,13 @@ func die() -> void:
 		game_manager = managers[0]
 	if game_manager and game_manager.has_method("patient_failed_to_process"):
 		game_manager.patient_failed_to_process()
-	else:
-		# Peringatan jika tidak ditemukan, sangat berguna untuk debugging
-		push_warning("ERROR: Game Manager/Spawner tidak ditemukan atau fungsi patient_failed_to_process tidak ada.")
-
-	# Emit signal for game management
+	
 	died.emit()
-	
-	print("Patient has died and is queued for removal.")
+	print("Patient died: ", patient_type) # Debug print tipe pasien
+	call_deferred("queue_free")
 
-	# Use call_deferred to ensure the node is freed safely (reliably disappears)
-	call_deferred("queue_free") 
-
-## ⏱️ Timer timeout logic (Damage Over Time)
 func _on_hp_timer_timeout() -> void:
-	# Inflict the damage defined by damage_per_second
 	take_damage(damage_per_second)
-	
-	# Restart the timer if the patient is still alive (since it's a One-Shot)
 	if current_health > 0:
 		hp_timer.start()
 
@@ -196,19 +220,15 @@ func toggle_follow(new_target: Node3D) -> void:
 ##                        ANIMATION FUNCTIONS
 ## ====================================================================
 
-# === ANIMATION LOGIC (WALK & IDLE BOOL) ===
 func _update_animation():
 	var speed_now = Vector3(velocity.x, 0, velocity.z).length()
 	var moving = speed_now > 0.3
-
-	# Update both booleans
 	anim_tree.set("parameters/conditions/walk", moving)
 	anim_tree.set("parameters/conditions/idle", not moving)
 
-
+# --- SENSOR LOGIC (SESUAIKAN JIKA DIPERLUKAN) ---
 func _on_sensor_ambil_body_entered(body: Node3D) -> void:
-	pass # Replace with function body.
-
+	pass
 
 func _on_sensor_ambil_body_exited(body: Node3D) -> void:
-	pass # Replace with function body.
+	pass

@@ -14,10 +14,32 @@ var failed_count: int = 0
 var total_spawned: int = 0
 var is_game_over: bool = false
 
+# Variabel HUD
+var stats_label: Label = null
+var highscore_label: Label = null # Variabel baru untuk High Score
+
 func _ready() -> void:
+	# 1. Cari Label Statistik (Kanan Atas)
+	stats_label = get_tree().get_first_node_in_group("stats_ui")
+	update_ui()
+	
+	# 2. Cari Label High Score (Kiri Atas) - BARU
+	highscore_label = get_tree().get_first_node_in_group("highscore_ui")
+	update_highscore_ui() # Tampilkan rekor tersimpan saat mulai
+	
 	if spawn_timer:
 		spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 		spawn_timer.start()
+
+# --- FUNGSI UPDATE UI ---
+func update_ui():
+	if stats_label:
+		stats_label.text = "Selamat: %d | Meninggal: %d" % [processed_count, failed_count]
+
+func update_highscore_ui():
+	if highscore_label:
+		# Ambil data langsung dari GameData (Global Script)
+		highscore_label.text = "Best: %d" % GameData.high_score
 
 func _on_spawn_timer_timeout() -> void:
 	if not is_game_over: spawn_patient()
@@ -29,11 +51,9 @@ func spawn_patient() -> void:
 	get_tree().current_scene.add_child(patient)
 	patient.global_position = summon_pos.global_position
 	
-	# Setup Komponen
 	if patient.has_node("HPTimer"): patient.get_node("HPTimer").start()
 	if patient.has_signal("died"): patient.died.connect(patient_failed_to_process)
 	
-	# Setup Gerakan
 	if patient.has_method("move_to_location"):
 		patient.move_to_location(get_random_point(waiting_area))
 
@@ -46,13 +66,26 @@ func get_random_point(area: Area3D) -> Vector3:
 	var ext = shape.size / 2.0
 	return area.global_position + Vector3(randf_range(-ext.x, ext.x), 0, randf_range(-ext.z, ext.z))
 
+# --- LOGIKA GAME ---
 func patient_successfully_processed() -> void:
 	if is_game_over: return
+	
 	processed_count += 1
+	
+	# Update High Score di Global Data
+	GameData.update_high_score(processed_count)
+	
+	# Update Tampilan di Layar
+	update_ui()           # Update skor saat ini
+	update_highscore_ui() # Update rekor (jika pecah rekor)
+	
+	print("Sukses: %d" % processed_count)
 
 func patient_failed_to_process() -> void:
 	if is_game_over: return
+	
 	failed_count += 1
+	update_ui()
 	
 	if failed_count >= max_failed_patients:
 		is_game_over = true
