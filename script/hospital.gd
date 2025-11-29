@@ -1,6 +1,6 @@
 extends Node3D
 
-# --- KONFIGURASI WAKTU (Dari kode lama kamu) ---
+# --- KONFIGURASI WAKTU ---
 @export var waktu_pintu_1: float = 10.0
 @export var waktu_pintu_2: float = 10.0
 @export var waktu_pintu_3: float = 10.0
@@ -19,6 +19,12 @@ extends Node3D
 
 @onready var ui_label = $CanvasLayer/Label_Interaksi 
 
+# --- AUDIO SYSTEM ---
+@onready var sfx_benar = $SFX_Benar
+@onready var sfx_salah = $SFX_Salah
+@onready var sfx_ambil = $SFX_Ambil
+@onready var sfx_gameover = $SFX_GameOver
+
 # --- INGATAN ---
 var pasien_di_pintu_1 = null
 var pasien_di_pintu_2 = null
@@ -27,7 +33,9 @@ var pasien_di_pintu_4 = null
 
 var game_manager = null
 
-# --- DEFINISI WARNA RUANGAN ---
+# --- [BAGIAN INI YANG PENTING] ---
+
+# 1. ATURAN MAIN (Jangan Diubah - Harus sama dengan script Pasien)
 var warna_ruangan = {
 	1: "merah",
 	2: "biru",
@@ -35,19 +43,24 @@ var warna_ruangan = {
 	4: "kuning"
 }
 
+# 2. TAMPILAN NAMA (Bebas Diubah sesuka hati)
+var nama_ruangan = {
+	1: "UGD",
+	2: "FLU",
+	3: "KERACUNAN",
+	4: "DIARE"
+}
+
 func _ready():
-	# spawner untuk lapor skor
-	var managers = get_tree().get_nodes_in_group("spawner") # Pastikan spawner ada di grup 'spawner' atau 'game_manager'
+	var managers = get_tree().get_nodes_in_group("spawner")
 	if not managers.is_empty():
 		game_manager = managers[0]
 	else:
-		# Fallback ke grup game_manager jika spawner tidak ketemu
 		var gm = get_tree().get_nodes_in_group("game_manager")
 		if not gm.is_empty(): game_manager = gm[0]
 
 	ui_label.visible = false 
 	
-	# Set Teks Awal (Menunjukkan Warna Ruangan)
 	reset_teks_ruangan(1, teks_1)
 	reset_teks_ruangan(2, teks_2)
 	reset_teks_ruangan(3, teks_3)
@@ -55,10 +68,10 @@ func _ready():
 
 func _process(delta):
 	# Update timer (Teks jadi putih saat menghitung)
-	if not timer_1.is_stopped(): teks_1.text = str(ceil(timer_1.time_left)); teks_1.modulate = Color.RED
-	if not timer_2.is_stopped(): teks_2.text = str(ceil(timer_2.time_left)); teks_2.modulate = Color.RED
-	if not timer_3.is_stopped(): teks_3.text = str(ceil(timer_3.time_left)); teks_3.modulate = Color.RED
-	if not timer_4.is_stopped(): teks_4.text = str(ceil(timer_4.time_left)); teks_4.modulate = Color.RED
+	if not timer_1.is_stopped(): teks_1.text = str(ceil(timer_1.time_left)); teks_1.modulate = Color.WHITE
+	if not timer_2.is_stopped(): teks_2.text = str(ceil(timer_2.time_left)); teks_2.modulate = Color.WHITE
+	if not timer_3.is_stopped(): teks_3.text = str(ceil(timer_3.time_left)); teks_3.modulate = Color.WHITE
+	if not timer_4.is_stopped(): teks_4.text = str(ceil(timer_4.time_left)); teks_4.modulate = Color.WHITE
 
 # --- FUNGSI BANTUAN UI ---
 func tampilkan_ui(pesan):
@@ -68,6 +81,13 @@ func tampilkan_ui(pesan):
 func sembunyikan_ui():
 	ui_label.visible = false
 
+# --- AUDIO PLAYER ---
+func play_pickup_sound():
+	if sfx_ambil: sfx_ambil.play()
+
+func play_gameover_sound():
+	if sfx_gameover: sfx_gameover.play()
+
 # --- LOGIKA INPUT ---
 func _input(event):
 	if event.is_action_pressed("send"):
@@ -76,44 +96,35 @@ func _input(event):
 		proses_interaksi(3, pasien_di_pintu_3, timer_3, teks_3, waktu_pintu_3)
 		proses_interaksi(4, pasien_di_pintu_4, timer_4, teks_4, waktu_pintu_4)
 
-# ⭐ LOGIKA PENGECEKAN WARNA (JANTUNG PERMAINAN) ⭐
 func proses_interaksi(no_pintu, pasien, timer, teks, waktu_durasi: float):
 	if pasien != null and timer.is_stopped():
+		var warna_baju = pasien.patient_type
+		var warna_kamar = warna_ruangan[no_pintu] # Ambil Logic Warna
 		
-		# 1. AMBIL WARNA
-		var warna_baju = pasien.patient_type # Dari script patient.gd
-		var warna_kamar = warna_ruangan[no_pintu]
-		
-		print("Cek: Pasien %s masuk Kamar %s" % [warna_baju, warna_kamar])
-		
-		# 2. CEK KECOCOKAN
+		# Cek kecocokan berdasarkan WARNA, bukan NAMA
 		if warna_baju == warna_kamar:
-			# --- JIKA BENAR (SUKSES) ---
+			# --- BENAR ---
 			pasien.queue_free() 
-			
-			# Mulai Timer
+			if sfx_benar: sfx_benar.play()
 			timer.wait_time = waktu_durasi
 			timer.start()
 			
-			# Lapor ke Spawner (Sukses)
 			if game_manager and game_manager.has_method("patient_successfully_processed"):
 				game_manager.patient_successfully_processed()
 				
-			teks.modulate = Color.RED # Merah tanda sedang sibuk/operasi
+			teks.modulate = Color.RED 
 			
 		else:
-			# --- JIKA SALAH (GAGAL) ---
+			# --- SALAH ---
 			print("SALAH KAMAR! Pasien Meninggal.")
 			pasien.queue_free()
+			if sfx_salah: sfx_salah.play()
 			
-			# Lapor ke Spawner (Gagal/Mati)
 			if game_manager and game_manager.has_method("patient_failed_to_process"):
 				game_manager.patient_failed_to_process()
 			
-			# Timer TIDAK dimulai, kembalikan teks ruangan
 			reset_teks_ruangan(no_pintu, teks)
 
-		# Reset ingatan di pintu ini
 		if no_pintu == 1: pasien_di_pintu_1 = null
 		elif no_pintu == 2: pasien_di_pintu_2 = null
 		elif no_pintu == 3: pasien_di_pintu_3 = null
@@ -121,11 +132,18 @@ func proses_interaksi(no_pintu, pasien, timer, teks, waktu_durasi: float):
 		
 		sembunyikan_ui()
 
-# Fungsi Helper: Mengembalikan nama ruangan dan warnanya
+func patient_failed_to_process():
+	if sfx_salah: sfx_salah.play()
+
+# --- [UPDATE PENTING DI SINI] ---
 func reset_teks_ruangan(no_pintu, label):
-	var warna = warna_ruangan[no_pintu]
-	label.text = "RUANG " + warna.to_upper()
+	var warna = warna_ruangan[no_pintu] # Ambil Warna (Merah, Biru...)
+	var nama = nama_ruangan[no_pintu]   # Ambil Nama (UGD, Flu...)
 	
+	# 1. Tampilkan Nama Kerennya
+	label.text = nama 
+	
+	# 2. Warnai teksnya berdasarkan jenis warnanya
 	if warna == "merah": label.modulate = Color(1, 0.2, 0.2)
 	elif warna == "biru": label.modulate = Color(0.4, 0.4, 1)
 	elif warna == "hijau": label.modulate = Color(0.2, 1, 0.2)
@@ -142,7 +160,6 @@ func _on_sensor_2_body_exited(body): if body == pasien_di_pintu_2: pasien_di_pin
 func _on_sensor_3_body_exited(body): if body == pasien_di_pintu_3: pasien_di_pintu_3 = null; sembunyikan_ui()
 func _on_sensor_4_body_exited(body): if body == pasien_di_pintu_4: pasien_di_pintu_4 = null; sembunyikan_ui()
 
-# --- TIMER TIMEOUTS (Reset ke nama ruangan) ---
 func _on_timer_1_timeout(): reset_teks_ruangan(1, teks_1)
 func _on_timer_2_timeout(): reset_teks_ruangan(2, teks_2)
 func _on_timer_3_timeout(): reset_teks_ruangan(3, teks_3)

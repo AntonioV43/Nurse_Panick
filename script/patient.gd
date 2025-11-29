@@ -1,142 +1,99 @@
 extends CharacterBody3D
 
-## === Movement and Navigation Properties ===
+## === CONFIGURATION ===
+@export_group("Movement")
 @export var speed: float = 4.0
 @export var stopping_distance: float = 1.6
 @export var rotation_speed: float = 6.0
 
-var target: Node3D = null
-var following: bool = false
-
-@onready var agent: NavigationAgent3D = $NavigationAgent3D
-var moving_to_location: bool = false
-
-## === Animation Properties ===
-@onready var anim_tree: AnimationTree = $AnimationTree
-@onready var anim_state = anim_tree.get("parameters/playback")
-
-## === HP System Properties ===
+@export_group("Stats")
 @export var max_health: int = 100
 var current_health: int = 0
-signal health_changed(new_health: int)
-signal died
 @export var damage_per_second: int = 1
 
-## === Timer ===
-@onready var hp_timer: Timer = $HPTimer
+# [PENTING] SLOT MODEL BAJU
+@export var body_mesh: MeshInstance3D 
 
-## === [BARU] COLOR SYSTEM ===
-# Variabel untuk menyimpan tipe warna pasien
+# --- SYSTEM VARIABLES ---
+var target: Node3D = null
+var following: bool = false
+var moving_to_location: bool = false
 @export var patient_type: String = "" 
 
-# Peta warna (bisa diubah di sini sesuai selera)
+# --- REFERENCES ---
+@onready var agent: NavigationAgent3D = $NavigationAgent3D
+@onready var hp_timer: Timer = $HPTimer
+@onready var anim_tree: AnimationTree = $AnimationTree
+
+# --- SIGNALS ---
+signal health_changed(new_health: int)
+signal died
+
+# --- COLOR MAP ---
 var color_map = {
-	"merah": Color(1, 0.2, 0.2),   # Merah (Kritis)
-	"biru": Color(0.2, 0.2, 1),    # Biru (Flu)
-	"hijau": Color(0.2, 1, 0.2),   # Hijau (Racun)
-	"kuning": Color(1, 1, 0.2)     # Kuning (Hati)
+	"merah": Color(1, 0.2, 0.2),
+	"biru": Color(0.2, 0.2, 1),
+	"hijau": Color(0.2, 1, 0.2),
+	"kuning": Color(1, 1, 0.2)
 }
 
-# Referensi Mesh untuk diubah warnanya
-@onready var body_mesh = $Ireng/Armature/GeneralSkeleton/Ch28_Hoody
-
-
-## ====================================================================
-##                        LIFECYCLE FUNCTIONS
-## ====================================================================
-
 func _ready() -> void:
-	# [BARU] Acak tipe pasien saat lahir
 	randomize_patient_type()
 	
-	# HP Initialization
 	current_health = max_health
 	health_changed.emit(current_health)
 	
-	# Connect the Timer signal
 	if not hp_timer.timeout.is_connected(_on_hp_timer_timeout):
 		hp_timer.timeout.connect(_on_hp_timer_timeout)
-	
 	hp_timer.start()
 	
-	# Navigation setup
-	agent.avoidance_enabled = true
-	agent.radius = 0.6
-	agent.avoidance_layers = 1
-	agent.avoidance_mask = 1
-	agent.path_max_distance = 0.5
 	agent.path_postprocessing = NavigationPathQueryParameters3D.PATH_POSTPROCESSING_CORRIDORFUNNEL
+	agent.avoidance_enabled = true
 
-# [BARU] Fungsi untuk mengacak tipe dan warna
+# --- LOGIKA WARNA ---
 func randomize_patient_type():
 	var types = ["merah", "biru", "hijau", "kuning"]
 	patient_type = types.pick_random()
-	
-	# Ubah visual
 	apply_color(patient_type)
 	
-	# Ubah kesulitan berdasarkan warna (Contoh: Merah lebih cepat mati)
 	if patient_type == "merah":
-		damage_per_second = randi_range(3, 5) # Kritis
+		damage_per_second = randi_range(3, 5) 
 	else:
-		damage_per_second = randi_range(1, 2) # Normal
+		damage_per_second = randi_range(1, 2) 
 
-# [BARU] Fungsi mengubah warna mesh
 func apply_color(type_name: String):
 	if body_mesh:
-		# Buat material baru agar unik per pasien
 		var new_mat = StandardMaterial3D.new()
 		new_mat.albedo_color = color_map[type_name]
-		
-		# Override material yang ada
 		body_mesh.material_override = new_mat
 	else:
-		print("Warning: Body Mesh tidak ditemukan untuk diwarnai.")
+		print("PERINGATAN: Body Mesh belum diisi di Inspector!")
 
+# --- LOGIKA GERAK ---
 func _physics_process(delta: float) -> void:
-	# Gravity
-	if not is_on_floor():
-		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta
-	else:
-		velocity.y = 0.0
+	if not is_on_floor(): velocity.y -= 9.8 * delta
 
-	# === NAVIGATION ===
 	if moving_to_location:
 		if agent.is_navigation_finished():
 			moving_to_location = false
-			velocity.x = 0
-			velocity.z = 0
+			velocity = Vector3.ZERO
 		else:
-			var next_pos: Vector3 = agent.get_next_path_position()
-			var dir = (next_pos - global_transform.origin).normalized()
-
+			var next_pos = agent.get_next_path_position()
+			var dir = (next_pos - global_position).normalized()
 			velocity.x = dir.x * speed
 			velocity.z = dir.z * speed
+			look_at_smooth(dir, delta)
 
-			if dir.length_squared() > 0.001:
-				var desired_rot_y = atan2(dir.x, dir.z)
-				rotation.y = lerp_angle(rotation.y, desired_rot_y, rotation_speed * delta)
-
-	# === FOLLOW TARGET ===
 	elif following and target:
-		var to_target: Vector3 = target.global_transform.origin - global_transform.origin
-		var horizontal = Vector3(to_target.x, 0, to_target.z)
-		var dist = horizontal.length()
-
-		if dist > stopping_distance:
-			var dir = horizontal.normalized()
+		var dir = (target.global_position - global_position)
+		dir.y = 0
+		if dir.length() > stopping_distance:
+			dir = dir.normalized()
 			velocity.x = dir.x * speed
 			velocity.z = dir.z * speed
+			look_at_smooth(dir, delta)
 		else:
-			velocity.x = 0
-			velocity.z = 0
-
-		if horizontal.length_squared() > 0.001:
-			var d = horizontal.normalized()
-			var desired_rot = Vector3(0, atan2(d.x, d.z), 0)
-			rotation.y = lerp_angle(rotation.y, desired_rot.y, clamp(rotation_speed * delta, 0, 1))
-
-	# === IDLE ===
+			velocity = Vector3.ZERO
 	else:
 		velocity.x = 0
 		velocity.z = 0
@@ -144,91 +101,93 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_update_animation()
 
+func look_at_smooth(dir: Vector3, delta: float):
+	if dir.length_squared() > 0.001:
+		var target_rot = atan2(dir.x, dir.z)
+		rotation.y = lerp_angle(rotation.y, target_rot, rotation_speed * delta)
 
-## ====================================================================
-##                        HP SYSTEM FUNCTIONS
-## ====================================================================
-
-func take_damage(amount: int) -> void:
-	if current_health <= 0:
-		return 
-
+# --- HP SYSTEM ---
+func take_damage(amount: int):
+	if current_health <= 0: return
 	current_health = max(0, current_health - amount)
 	health_changed.emit(current_health)
-
-	if current_health == 0:
-		die()
-
-func heal(amount: int) -> void:
-	if current_health <= 0:
-		return
-
-	current_health = min(max_health, current_health + amount)
-	health_changed.emit(current_health)
+	if current_health == 0: die()
 
 func die() -> void:
 	hp_timer.stop()
 	set_physics_process(false)
-	set_process(false)
-
 	moving_to_location = false
 	following = false
-	velocity = Vector3.ZERO
-
-	var managers = get_tree().get_nodes_in_group("game_manager")
-	var game_manager = null
-	if not managers.is_empty():
-		game_manager = managers[0]
-	if game_manager and game_manager.has_method("patient_failed_to_process"):
-		game_manager.patient_failed_to_process()
+	
+	# 1. Cari Hospital (Game Manager) untuk mematikan UI
+	var hospital_controller = get_tree().get_first_node_in_group("game_manager")
+	if hospital_controller and hospital_controller.has_method("sembunyikan_ui"):
+		hospital_controller.sembunyikan_ui()
+	
+	# 2. Cari Spawner untuk lapor kematian (Update Skor)
+	# Kita coba cari di grup 'spawner' dulu, kalau tidak ada coba 'game_manager'
+	var spawner = get_tree().get_first_node_in_group("spawner")
+	if not spawner: 
+		spawner = get_tree().get_first_node_in_group("game_manager")
+		
+	if spawner and spawner.has_method("patient_failed_to_process"):
+		spawner.patient_failed_to_process()
 	
 	died.emit()
-	print("Patient died: ", patient_type) # Debug print tipe pasien
+	print("Patient died: ", patient_type)
+	call_deferred("queue_free")
+	
+	died.emit()
 	call_deferred("queue_free")
 
-func _on_hp_timer_timeout() -> void:
+func _on_hp_timer_timeout():
 	take_damage(damage_per_second)
-	if current_health > 0:
-		hp_timer.start()
+	if current_health > 0: hp_timer.start()
 
-
-## ====================================================================
-##                        MOVEMENT API FUNCTIONS
-## ====================================================================
-
-func move_to_location(target_position: Vector3) -> void:
+# --- MOVEMENT API (INTERAKSI) ---
+func move_to_location(pos: Vector3):
 	moving_to_location = true
-	agent.target_position = target_position
+	agent.target_position = pos
 
-func start_follow(new_target: Node3D) -> void:
-	if new_target:
-		target = new_target
-		following = true
+func start_follow(new_target: Node3D):
+	moving_to_location = false # Stop AI navigation
+	target = new_target
+	following = true
+	print("Pasien mulai mengikuti.")
 
-func stop_follow() -> void:
+func stop_follow():
 	following = false
 	target = null
+	print("Pasien berhenti mengikuti.")
 
-func toggle_follow(new_target: Node3D) -> void:
+# Dipanggil oleh Player.gd saat tombol E ditekan
+func toggle_follow(new_target: Node3D):
 	if following:
 		stop_follow()
 	else:
 		start_follow(new_target)
 
-
-## ====================================================================
-##                        ANIMATION FUNCTIONS
-## ====================================================================
-
-func _update_animation():
-	var speed_now = Vector3(velocity.x, 0, velocity.z).length()
-	var moving = speed_now > 0.3
-	anim_tree.set("parameters/conditions/walk", moving)
-	anim_tree.set("parameters/conditions/idle", not moving)
-
-# --- SENSOR LOGIC (SESUAIKAN JIKA DIPERLUKAN) ---
+# --- SENSOR LOGIC (UNTUK MEMUNCULKAN UI) ---
+# Pastikan Sensor_Ambil di scene Pasien tersambung ke sini!
+# --- SENSOR LOGIC (UNTUK MEMUNCULKAN UI) ---
 func _on_sensor_ambil_body_entered(body: Node3D) -> void:
-	pass
+	# Cek jika yang masuk adalah Player (pastikan nama node player kamu 'player')
+	if body.name == "player" or body.is_in_group("player_node"):
+		var manager = get_tree().get_first_node_in_group("game_manager")
+		if manager:
+			# Panggil fungsi UI di Hospital
+			manager.tampilkan_ui("[E] Bawa / Lepas Pasien")
 
 func _on_sensor_ambil_body_exited(body: Node3D) -> void:
-	pass
+	if body.name == "player" or body.is_in_group("player_node"):
+		var manager = get_tree().get_first_node_in_group("game_manager")
+		if manager:
+			# Matikan UI
+			manager.sembunyikan_ui()
+
+# --- ANIMATION ---
+func _update_animation():
+	var is_moving = Vector3(velocity.x, 0, velocity.z).length() > 0.1
+	if anim_tree:
+		anim_tree.set("parameters/conditions/walk", is_moving)
+		anim_tree.set("parameters/conditions/idle", not is_moving)

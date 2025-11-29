@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bwak085b1d467"]
+[gd_scene load_steps=50 format=3 uid="uid://bwak085b1d467"]
 
 [ext_resource type="Script" uid="uid://biugua7u0grfs" path="res://script/hospital.gd" id="1_dcg5e"]
 [ext_resource type="Texture2D" uid="uid://gglyvduslmo0" path="res://assets/textures/dev/grids/Dark/texture_07.png" id="1_lthse"]
@@ -33,8 +33,11 @@
 [ext_resource type="PackedScene" uid="uid://6f44bq87ptak" path="res://AssetRS/white_single_door.glb" id="32_f8pa5"]
 [ext_resource type="PackedScene" uid="uid://dvl7vrrvueb5p" path="res://AssetRS/3d_number_-_1_one.glb" id="34_5ejb6"]
 [ext_resource type="PackedScene" uid="uid://bjm1cooq3bfal" path="res://AssetRS/main_switch_board.glb" id="34_i3lfl"]
+[ext_resource type="AudioStream" uid="uid://bl65equ0nydtw" path="res://assets/Audio/pickupCoin.wav" id="36_h0ixe"]
 [ext_resource type="PackedScene" uid="uid://cibah3sboypc" path="res://AssetRS/3d_handwashing_infographic.glb" id="37_5ejb6"]
+[ext_resource type="AudioStream" uid="uid://bpjr25u4vi5kb" path="res://assets/Audio/hitHurt.wav" id="37_koj0f"]
 [ext_resource type="PackedScene" uid="uid://vpd182pqivjm" path="res://AssetRS/sci_fi_monitor.glb" id="38_ft2d6"]
+[ext_resource type="AudioStream" uid="uid://c6jd7wum0pcm3" path="res://assets/Audio/explosion.wav" id="39_jiusc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wt603"]
 vertices = PackedVector3Array(-29, 0.48000008, -13.25, -16.5, 0.48000008, -13.25, -16.5, 0.48000008, -15.25, -15.25, 0.48000008, -16.25, -13.75, 0.48000008, -16.25, -14, 0.48000008, -29, -29, 0.48000008, -29, 14, 0.48000008, -16.25, 14.25, 0.48000008, -29, 16.5, 0.48000008, -15.25, 16.5, 0.48000008, -13.25, 29, 0.48000008, -13.25, 15.5, 0.48000008, -16.25, 29, 0.48000008, -29, -13.75, 0.48000008, -13.5, -13.75, 0.48000008, -6.5, -7.75, 0.48000008, -6.5, -7.75, 0.48000008, -13.5, -5, 0.48000008, -13.5, -5, 0.48000008, -6.5, 1.25, 0.48000008, -6.5, 1.25, 0.48000008, -13.5, 4, 0.48000008, -13.5, 4, 0.48000008, -12.75, 4.5, 0.48000008, -13.25, 14.5, 0.48000008, 0.5, 15.25, 0.48000008, 0.5, 15.25, 0.48000008, -0.25, 14.5, 0.48000008, -0.25, 3, 0.48000008, -2.75, 3, 0.48000008, 3, 3.75, 0.48000008, 3.75, 4.5, 0.48000008, -5.25, 4, 0.48000008, -5.75, 3.75, 0.48000008, -3.5, 6.5, 0.48000008, -13.25, 11, 0.48000008, -13.5, 6.5, 0.48000008, -5.25, 12.75, 0.48000008, 2.75, 12.25, 0.48000008, -2.5, 12.5, 0.48000008, -6, 11.5, 0.48000008, -6, 10.75, 0.48000008, -6.75, 7.25, 0.48000008, -6, 7.25, 0.48000008, -12.5, 4, 0.48000008, 6, 12.75, 0.48000008, 5.75, 1.75, 0.48000008, -2.75, 1.75, 0.48000008, 3, -17.5, 0.48000008, -5.25, -16.5, 0.48000008, -6.5, -29, 0.48000008, -5.25, 16.5, 0.48000008, -3, 29, 0.48000008, -3, -16.5, 0.48000008, 3.75, -16.5, 0.48000008, -3.75, -17.5, 0.48000008, -4.5, -29, 0.48000008, 5, -17.5, 0.48000008, 5, -5.75, 0.48000008, 2.75, -4.75, 0.48000008, 2.75, -4.75, 0.48000008, -3.75, -6.5, 0.48000008, 3.75, -13.75, 0.48000008, -3.75, -13.75, 0.48000008, 3.75, -3, 0.48000008, 3.75, 0, 0.48000008, 3.75, 0.5, 0.48000008, 3, -3.75, 0.48000008, 2.75, 0.5, 0.48000008, -2.75, -0.25, 0.48000008, -3.75, 16.5, 0.48000008, -1, 16.5, 0.48000008, 1.25, 29, 0.48000008, 3.25, 16.5, 0.48000008, 3.25, 16.5, 0.48000008, 13.25, 29, 0.48000008, 13.25, -16.5, 0.48000008, 12.75, -16.5, 0.48000008, 6.5, -17.5, 0.48000008, 5.75, -29, 0.48000008, 12.75, 10.25, 0.48000008, 12.75, 11.5, 0.48000008, 13.75, 11.5, 0.48000008, 12.25, 12.5, 0.48000008, 11.5, 6, 0.48000008, 12.5, 6.25, 0.48000008, 13, 4, 0.48000008, 12.5, -13.75, 0.48000008, 6.5, -13.75, 0.48000008, 13.75, -7.75, 0.48000008, 13.75, -7.75, 0.48000008, 6.5, -5, 0.48000008, 6.5, -5, 0.48000008, 13.75, 1.25, 0.48000008, 13.75, 1.25, 0.48000008, 6.5, -13.25, 0.48000008, 29, -13.25, 0.48000008, 16.5, -15.25, 0.48000008, 16.5, -16.25, 0.48000008, 15.5, -29, 0.48000008, 29, 15.25, 0.48000008, 16.5, 13.25, 0.48000008, 16.5, 13.25, 0.48000008, 29, 16.5, 0.48000008, 15.25, 29, 0.48000008, 29)
@@ -499,6 +502,15 @@ mesh = SubResource("BoxMesh_11tej")
 
 [node name="Sketchfab_Scene" parent="lantai2" instance=ExtResource("4_cfhey")]
 transform = Transform3D(-0.405, 0, -6.11533e-08, 0, 0.405, 0, 6.11533e-08, 0, -0.405, -6.2, 1.35, 2.4)
+
+[node name="SFX_Benar" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("36_h0ixe")
+
+[node name="SFX_Salah" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("37_koj0f")
+
+[node name="SFX_Gameover" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("39_jiusc")
 
 [connection signal="timeout" from="Timer_1" to="." method="_on_timer_1_timeout"]
 [connection signal="timeout" from="Timer_2" to="." method="_on_timer_2_timeout"]

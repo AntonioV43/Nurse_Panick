@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfu8csu03hvgy"]
+[gd_scene load_steps=16 format=3 uid="uid://dfu8csu03hvgy"]
 
 [ext_resource type="Texture2D" uid="uid://do01si3a4lx5p" path="res://assets/Skybox/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_2wwxx"]
 [ext_resource type="Script" uid="uid://b2xlmbeob4880" path="res://script/player.gd" id="3_3amdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bwak085b1d467" path="res://Scene/hospital.tscn" id="4_brvut"]
 [ext_resource type="Script" uid="uid://bbdo6uchswuyh" path="res://script/patient_spawner.gd" id="5_3amdw"]
 [ext_resource type="PackedScene" uid="uid://cv7kt530cx1t0" path="res://Scene/End_menu.tscn" id="6_1xcnr"]
+[ext_resource type="PackedScene" uid="uid://drdk2amtlfm72" path="res://Scene/Patient_2.tscn" id="6_ow1sv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lquwl"]
 panorama = ExtResource("2_2wwxx")
@@ -75,7 +76,7 @@ debug_color = Color(0, 0, 0, 1)
 [node name="Area" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 3.3552728)
 
-[node name="Gedung_RS" parent="." instance=ExtResource("4_brvut")]
+[node name="Gedung_RS" parent="." groups=["game_manager"] instance=ExtResource("4_brvut")]
 waktu_pintu_1 = 5.0
 waktu_pintu_2 = 5.0
 waktu_pintu_3 = 5.0
@@ -109,10 +110,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.164659, 0, -3.7739894)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8648291, 0.5, 0.36230755)
 shape = SubResource("BoxShape3D_3amdw")
 
-[node name="PatientSpawner" type="Node3D" parent="." groups=["game_manager", "spawner"]]
+[node name="PatientSpawner" type="Node3D" parent="." groups=["spawner"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063543, 0, 0)
 script = ExtResource("5_3amdw")
-patient_scene = ExtResource("4_2wwxx")
+patient_scenes = Array[PackedScene]([ExtResource("4_2wwxx"), ExtResource("6_ow1sv")])
 end_menu_scene = ExtResource("6_1xcnr")
 
 [node name="summonPos" type="Node3D" parent="PatientSpawner"]
