@@ -6,3 +6,4 @@
 stream = ExtResource("1_p1osb")
 volume_db = -10.0
 autoplay = true
+parameters/looping = true

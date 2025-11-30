@@ -9,6 +9,7 @@ extends Node3D
 @onready var summon_pos: Node3D = $summonPos
 @onready var waiting_area: Area3D = $movePos
 @onready var spawn_timer: Timer = $SpawnTimer
+@onready var sfx_gameover = $SFX_Gameover
 
 var processed_count: int = 0
 var failed_count: int = 0
@@ -76,6 +77,8 @@ func patient_failed_to_process() -> void:
 		end_game(false)
 
 func end_game(is_win: bool) -> void:
+	if not is_win and sfx_gameover:
+		sfx_gameover.play()
 	if spawn_timer: spawn_timer.stop()
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

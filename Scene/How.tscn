@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c40ixpwd02pnh"]
 
-[ext_resource type="Script" uid="uid://ce4vg25t4t4pj" path="res://Scene/howto_play.gd" id="1_b8lmg"]
+[ext_resource type="Script" uid="uid://ce4vg25t4t4pj" path="res://script/howto_play.gd" id="1_b8lmg"]
 [ext_resource type="Texture2D" uid="uid://b5251tes6fnby" path="res://assets/textures/backgroundpink.jpg" id="2_madm0"]
 [ext_resource type="FontFile" uid="uid://cyva73u2vpihn" path="res://assets/Font/font3.ttf" id="3_madm0"]
 [ext_resource type="Texture2D" uid="uid://cqg6da6gsvju8" path="res://AssetRS/how to play.png" id="4_madm0"]

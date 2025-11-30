@@ -22,8 +22,6 @@ extends Node3D
 # --- AUDIO SYSTEM ---
 @onready var sfx_benar = $SFX_Benar
 @onready var sfx_salah = $SFX_Salah
-@onready var sfx_ambil = $SFX_Ambil
-@onready var sfx_gameover = $SFX_GameOver
 
 # --- INGATAN ---
 var pasien_di_pintu_1 = null
@@ -80,13 +78,6 @@ func tampilkan_ui(pesan):
 
 func sembunyikan_ui():
 	ui_label.visible = false
-
-# --- AUDIO PLAYER ---
-func play_pickup_sound():
-	if sfx_ambil: sfx_ambil.play()
-
-func play_gameover_sound():
-	if sfx_gameover: sfx_gameover.play()
 
 # --- LOGIKA INPUT ---
 func _input(event):

@@ -37,7 +37,6 @@
 [ext_resource type="PackedScene" uid="uid://cibah3sboypc" path="res://AssetRS/3d_handwashing_infographic.glb" id="37_5ejb6"]
 [ext_resource type="AudioStream" uid="uid://bpjr25u4vi5kb" path="res://assets/Audio/hitHurt.wav" id="37_koj0f"]
 [ext_resource type="PackedScene" uid="uid://vpd182pqivjm" path="res://AssetRS/sci_fi_monitor.glb" id="38_ft2d6"]
-[ext_resource type="AudioStream" uid="uid://c6jd7wum0pcm3" path="res://assets/Audio/explosion.wav" id="39_jiusc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wt603"]
 vertices = PackedVector3Array(-29, 0.48000008, -13.25, -16.5, 0.48000008, -13.25, -16.5, 0.48000008, -15.25, -15.25, 0.48000008, -16.25, -13.75, 0.48000008, -16.25, -14, 0.48000008, -29, -29, 0.48000008, -29, 14, 0.48000008, -16.25, 14.25, 0.48000008, -29, 16.5, 0.48000008, -15.25, 16.5, 0.48000008, -13.25, 29, 0.48000008, -13.25, 15.5, 0.48000008, -16.25, 29, 0.48000008, -29, -13.75, 0.48000008, -13.5, -13.75, 0.48000008, -6.5, -7.75, 0.48000008, -6.5, -7.75, 0.48000008, -13.5, -5, 0.48000008, -13.5, -5, 0.48000008, -6.5, 1.25, 0.48000008, -6.5, 1.25, 0.48000008, -13.5, 4, 0.48000008, -13.5, 4, 0.48000008, -12.75, 4.5, 0.48000008, -13.25, 14.5, 0.48000008, 0.5, 15.25, 0.48000008, 0.5, 15.25, 0.48000008, -0.25, 14.5, 0.48000008, -0.25, 3, 0.48000008, -2.75, 3, 0.48000008, 3, 3.75, 0.48000008, 3.75, 4.5, 0.48000008, -5.25, 4, 0.48000008, -5.75, 3.75, 0.48000008, -3.5, 6.5, 0.48000008, -13.25, 11, 0.48000008, -13.5, 6.5, 0.48000008, -5.25, 12.75, 0.48000008, 2.75, 12.25, 0.48000008, -2.5, 12.5, 0.48000008, -6, 11.5, 0.48000008, -6, 10.75, 0.48000008, -6.75, 7.25, 0.48000008, -6, 7.25, 0.48000008, -12.5, 4, 0.48000008, 6, 12.75, 0.48000008, 5.75, 1.75, 0.48000008, -2.75, 1.75, 0.48000008, 3, -17.5, 0.48000008, -5.25, -16.5, 0.48000008, -6.5, -29, 0.48000008, -5.25, 16.5, 0.48000008, -3, 29, 0.48000008, -3, -16.5, 0.48000008, 3.75, -16.5, 0.48000008, -3.75, -17.5, 0.48000008, -4.5, -29, 0.48000008, 5, -17.5, 0.48000008, 5, -5.75, 0.48000008, 2.75, -4.75, 0.48000008, 2.75, -4.75, 0.48000008, -3.75, -6.5, 0.48000008, 3.75, -13.75, 0.48000008, -3.75, -13.75, 0.48000008, 3.75, -3, 0.48000008, 3.75, 0, 0.48000008, 3.75, 0.5, 0.48000008, 3, -3.75, 0.48000008, 2.75, 0.5, 0.48000008, -2.75, -0.25, 0.48000008, -3.75, 16.5, 0.48000008, -1, 16.5, 0.48000008, 1.25, 29, 0.48000008, 3.25, 16.5, 0.48000008, 3.25, 16.5, 0.48000008, 13.25, 29, 0.48000008, 13.25, -16.5, 0.48000008, 12.75, -16.5, 0.48000008, 6.5, -17.5, 0.48000008, 5.75, -29, 0.48000008, 12.75, 10.25, 0.48000008, 12.75, 11.5, 0.48000008, 13.75, 11.5, 0.48000008, 12.25, 12.5, 0.48000008, 11.5, 6, 0.48000008, 12.5, 6.25, 0.48000008, 13, 4, 0.48000008, 12.5, -13.75, 0.48000008, 6.5, -13.75, 0.48000008, 13.75, -7.75, 0.48000008, 13.75, -7.75, 0.48000008, 6.5, -5, 0.48000008, 6.5, -5, 0.48000008, 13.75, 1.25, 0.48000008, 13.75, 1.25, 0.48000008, 6.5, -13.25, 0.48000008, 29, -13.25, 0.48000008, 16.5, -15.25, 0.48000008, 16.5, -16.25, 0.48000008, 15.5, -29, 0.48000008, 29, 15.25, 0.48000008, 16.5, 13.25, 0.48000008, 16.5, 13.25, 0.48000008, 29, 16.5, 0.48000008, 15.25, 29, 0.48000008, 29)
@@ -50,6 +49,9 @@ size = Vector3(30, 4, 0.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_klpa6"]
 size = Vector3(30, 4, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ft2d6"]
+size = Vector3(1, 3, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dcg5e"]
 size = Vector3(30, 0.1, 30)
@@ -119,16 +121,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, -4.2)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/D_internal/R_UGD2"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.35, 0, -0.95)
-size = Vector3(0.5, 4, 10.1)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.8000002, 0, -0.9499998)
+size = Vector3(0.5, 4, 9)
 
 [node name="R_UGD4" type="CSGCombiner3D" parent="NavigationRegion3D/D_internal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 5.8)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/D_internal/R_UGD4"]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.3500004, 0, -0.75)
-size = Vector3(0.5, 4, 10.1)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.8000002, 0, -0.75)
+size = Vector3(0.5, 4, 9)
 
 [node name="R_UGD6" type="CSGCombiner3D" parent="NavigationRegion3D/D_internal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, -4.2)
@@ -181,10 +183,32 @@ use_collision = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 2, 0)
 size = Vector3(0.5, 4, 30)
 
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/D_eksternal/Dinding 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.964943, 2, -0.0034179688)
+size = Vector3(0.5, 4, 59.9)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/D_eksternal/Dinding 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.235336, 2, -0.0034179688)
+size = Vector3(0.5, 4, 59.9)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/D_eksternal/Dinding 4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.061243057, 2, -29.839746)
+size = Vector3(0.5, 4, 60.5)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/D_eksternal/Dinding 4"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.061243057, 2, 29.882101)
+size = Vector3(0.5, 4, 60.5)
+
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/D_eksternal/Dinding 4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1.4, 0.011224449)
 operation = 2
 size = Vector3(1, 2.75, 3)
+
+[node name="Area3D" type="Area3D" parent="NavigationRegion3D/D_eksternal/Dinding 4/CSGBox3D2"]
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/D_eksternal/Dinding 4/CSGBox3D2/Area3D"]
+shape = SubResource("BoxShape3D_ft2d6")
 
 [node name="Dinding 1" type="StaticBody3D" parent="NavigationRegion3D/D_eksternal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -306,7 +330,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9999998, 2.9, -4.9)
 transform = Transform3D(-0.635, 0, -5.5513464e-08, 0, 0.635, 0, 5.5513464e-08, 0, -0.635, -3.2999997, 2.8, 4.8)
 
 [node name="Sketchfab_Scene5" parent="NavigationRegion3D" instance=ExtResource("37_5ejb6")]
-transform = Transform3D(0.095, -1.4344601e-08, 1.4344601e-08, 1.4344601e-08, 0.095, 1.2540446e-15, 1.4344601e-08, -9.1193e-16, -0.095, -6.5, 0.3, 4.7)
+transform = Transform3D(-0.095, -8.305164e-09, 8.305164e-09, -8.305164e-09, 0.095, 0, 8.305164e-09, 7.2606044e-16, 0.095, -6.9796543, 0.3, 4.4238744)
 
 [node name="Sketchfab_Scene6" parent="NavigationRegion3D" instance=ExtResource("38_ft2d6")]
 transform = Transform3D(-0.9090157, 0, 0.35258397, 0, 0.975, 0, -0.35258397, 0, -0.9090157, 0.6, 0.45, 6.3)
@@ -508,9 +532,6 @@ stream = ExtResource("36_h0ixe")
 
 [node name="SFX_Salah" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("37_koj0f")
-
-[node name="SFX_Gameover" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("39_jiusc")
 
 [connection signal="timeout" from="Timer_1" to="." method="_on_timer_1_timeout"]
 [connection signal="timeout" from="Timer_2" to="." method="_on_timer_2_timeout"]

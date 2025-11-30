@@ -1,0 +1,167 @@
+[gd_scene load_steps=17 format=3 uid="uid://cigneymlaf4xu"]
+
+[ext_resource type="Script" uid="uid://ofwl0y23ruxe" path="res://script/patient.gd" id="1_mhqvh"]
+[ext_resource type="PackedScene" uid="uid://2h3eqwlmbwbg" path="res://assets/Animation/Ireng.glb" id="2_b6bir"]
+[ext_resource type="AnimationLibrary" uid="uid://dh5pvrj463kc0" path="res://assets/Animation/Mendem.res" id="3_868md"]
+[ext_resource type="Texture2D" uid="uid://broq4qg2tv1w2" path="res://assets/textures/Bar/BG.png" id="3_b71q8"]
+[ext_resource type="Texture2D" uid="uid://6h6yokoceuls" path="res://assets/textures/Bar/S.png" id="4_868md"]
+[ext_resource type="Script" uid="uid://brdwrh64kl711" path="res://script/Healthbar.gd" id="4_eiev2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w6wah"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_868md"]
+animation = &"Mendem/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cy3vu"]
+animation = &"Mendem/Walk"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_868md"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_868md")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_cy3vu")
+blend_point_1/pos = 1.0
+min_space = 0.0
+snap = 0.5
+sync = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rr0fq"]
+xfade_time = 0.5
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_868md"]
+states/Movement/node = SubResource("AnimationNodeBlendSpace1D_868md")
+states/Movement/position = Vector2(521.9302, 106)
+states/Start/position = Vector2(200, 116)
+transitions = ["Start", "Movement", SubResource("AnimationNodeStateMachineTransition_rr0fq")]
+graph_offset = Vector2(-52.069824, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eiev2"]
+viewport_path = NodePath("HealthBar3D/HPViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b71q8"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_eiev2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_eiev2"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_b71q8")
+size = Vector2(0.8, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b71q8"]
+
+[node name="Pasien" type="CharacterBody3D" node_paths=PackedStringArray("body_mesh") groups=["pasien"]]
+script = ExtResource("1_mhqvh")
+damage_per_second = 2
+body_mesh = NodePath("Ireng/Armature/GeneralSkeleton/Ch28_Hoody")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_w6wah")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Ireng" parent="." instance=ExtResource("2_b6bir")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="Ireng/Armature" index="0"]
+bones/0/position = Vector3(0.025829341, 0.94482654, -0.12155905)
+bones/0/rotation = Quaternion(0.13796386, 0.035376187, -0.054923717, 0.9882803)
+bones/1/rotation = Quaternion(0.20023996, 0.03972752, -0.04721637, 0.9778018)
+bones/2/rotation = Quaternion(0.049735587, 0.011970578, -0.0054023857, 0.9986762)
+bones/3/rotation = Quaternion(0.04965254, 0.011718119, -0.0055525834, 0.9986824)
+bones/4/rotation = Quaternion(-0.02100184, -0.014438668, 0.019015549, 0.9994943)
+bones/5/rotation = Quaternion(-0.020976122, -0.014382294, 0.019072909, 0.99949455)
+bones/7/rotation = Quaternion(0.4428749, 0.4939221, 0.6402478, -0.38727963)
+bones/8/rotation = Quaternion(0.2624159, 0.9001516, -0.3255799, 0.1219135)
+bones/9/rotation = Quaternion(0.08851954, -0.7015443, 0.08851954, 0.7015443)
+bones/10/rotation = Quaternion(0.19377808, 0.78225654, -0.07657851, 0.5870779)
+bones/11/rotation = Quaternion(-0.26678368, 0.68482506, 0.23878013, 0.63468516)
+bones/12/rotation = Quaternion(0.20516516, 0.17656079, 0.013250034, 0.9625789)
+bones/13/rotation = Quaternion(0.11311878, 0.041188978, -0.050192833, 0.99145776)
+bones/15/rotation = Quaternion(0.28750327, -0.007060663, -0.0067456374, 0.95772994)
+bones/16/rotation = Quaternion(0.17853492, -5.313188e-08, -0.01829564, 0.98376346)
+bones/17/rotation = Quaternion(0.057823014, -4.2596497e-08, -0.0059256232, 0.99830925)
+bones/19/rotation = Quaternion(0.3319973, -0.009691958, -0.04403733, 0.9422021)
+bones/20/rotation = Quaternion(0.1936698, -2.3632897e-08, -0.019846624, 0.9808661)
+bones/21/rotation = Quaternion(0.10107364, -2.558824e-08, -0.010357774, 0.99482507)
+bones/23/rotation = Quaternion(0.37483016, 0.014243811, -0.10967591, 0.92047316)
+bones/24/rotation = Quaternion(0.15880807, 5.1176524e-08, -0.016274037, 0.98717535)
+bones/25/rotation = Quaternion(0.14081053, -4.6810577e-08, -0.01442979, 0.98993146)
+bones/27/rotation = Quaternion(0.34257656, 0.033241358, -0.16405551, 0.9244578)
+bones/28/rotation = Quaternion(0.1698258, -2.5436496e-08, -0.017403236, 0.98532045)
+bones/29/rotation = Quaternion(0.22911048, 4.033763e-08, -0.023478486, 0.97311735)
+bones/31/rotation = Quaternion(0.47018456, -0.48415744, -0.6271881, -0.3887844)
+bones/32/rotation = Quaternion(-0.17189844, 0.8781934, -0.44435275, 0.042167153)
+bones/33/rotation = Quaternion(0.1123349, 0.69812673, -0.11233481, 0.6981266)
+bones/34/rotation = Quaternion(0.048564207, -0.66519684, -0.042465806, 0.7438759)
+bones/35/rotation = Quaternion(-0.26797283, -0.6464434, -0.2661168, 0.6629353)
+bones/36/rotation = Quaternion(0.26269117, -0.17930698, -0.026655601, 0.9476983)
+bones/37/rotation = Quaternion(0.12640697, 0.008640557, 0.16052127, 0.97886646)
+bones/39/rotation = Quaternion(0.12522379, 0.0077051898, -0.023464935, 0.99182117)
+bones/40/rotation = Quaternion(0.16127852, 3.4168213e-08, 0.013138137, 0.98682153)
+bones/41/rotation = Quaternion(0.07281714, 1.08598115e-07, 0.0059317877, 0.9973277)
+bones/43/rotation = Quaternion(0.18055823, 0.007542501, 0.010402391, 0.98348045)
+bones/44/rotation = Quaternion(0.18844493, 4.899348e-08, 0.015351068, 0.9819638)
+bones/45/rotation = Quaternion(0.16951889, -6.1693877e-09, 0.013809258, 0.98543024)
+bones/47/rotation = Quaternion(0.22923996, -0.0008802434, 0.059346057, 0.9715588)
+bones/48/rotation = Quaternion(0.21671419, -1.1067988e-07, 0.017654072, 0.9760755)
+bones/49/rotation = Quaternion(0.21168646, -8.745169e-08, 0.01724458, 0.97718555)
+bones/51/rotation = Quaternion(0.2910672, -0.0017796729, 0.10532703, 0.95088536)
+bones/52/rotation = Quaternion(0.23753878, -7.856814e-08, 0.019350598, 0.9711853)
+bones/53/rotation = Quaternion(0.2763709, 5.320763e-08, 0.02251373, 0.96078736)
+bones/55/rotation = Quaternion(0.039255146, 0.35374716, 0.9332297, -0.049034685)
+bones/56/rotation = Quaternion(-0.040073298, 0.9709513, -0.22369733, 0.07488155)
+bones/57/rotation = Quaternion(-0.039653618, 0.7018347, -0.7111349, -0.011959144)
+bones/58/rotation = Quaternion(4.7592184e-08, 0.9979342, 0.06424436, 2.1721913e-08)
+bones/60/rotation = Quaternion(-0.03377981, 0.26361495, 0.96393985, -0.013638681)
+bones/61/rotation = Quaternion(0.010642304, 0.98692834, -0.1394073, -0.080155775)
+bones/62/rotation = Quaternion(-0.05640035, 0.6872641, -0.7163403, -0.106507026)
+bones/63/rotation = Quaternion(-4.6900954e-08, 0.99818444, 0.060233176, -5.9264806e-08)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ireng"]
+libraries = {
+&"Mendem": ExtResource("3_868md")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../Ireng")
+tree_root = SubResource("AnimationNodeStateMachine_868md")
+anim_player = NodePath("../Ireng/AnimationPlayer")
+parameters/Movement/blend_position = -0.15074627
+
+[node name="HPTimer" type="Timer" parent="."]
+
+[node name="HealthBar3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3, 0)
+
+[node name="HPViewport" type="SubViewport" parent="HealthBar3D"]
+transparent_bg = true
+size = Vector2i(200, 40)
+
+[node name="HealthBar" type="TextureProgressBar" parent="HealthBar3D/HPViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_b71q8")
+texture_progress = ExtResource("4_868md")
+script = ExtResource("4_eiev2")
+
+[node name="HealthBarMesh" type="MeshInstance3D" parent="HealthBar3D"]
+mesh = SubResource("QuadMesh_eiev2")
+
+[node name="Sensor_Ambil" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sensor_Ambil"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_b71q8")
+
+[connection signal="body_entered" from="Sensor_Ambil" to="." method="_on_sensor_ambil_body_entered"]
+[connection signal="body_exited" from="Sensor_Ambil" to="." method="_on_sensor_ambil_body_exited"]
+
+[editable path="Ireng"]
