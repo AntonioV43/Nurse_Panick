@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cigneymlaf4xu"]
+[gd_scene load_steps=20 format=3 uid="uid://cigneymlaf4xu"]
 
 [ext_resource type="Script" uid="uid://ofwl0y23ruxe" path="res://script/patient.gd" id="1_mhqvh"]
 [ext_resource type="PackedScene" uid="uid://2h3eqwlmbwbg" path="res://assets/Animation/Ireng.glb" id="2_b6bir"]
@@ -806,8 +806,11 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_b71q8")
 size = Vector2(0.8, 0.1)
 
-[node name="Pasien" type="CharacterBody3D" groups=["pasien"]]
+[sub_resource type="BoxShape3D" id="BoxShape3D_b71q8"]
+
+[node name="Pasien" type="CharacterBody3D" node_paths=PackedStringArray("body_mesh") groups=["pasien"]]
 script = ExtResource("1_mhqvh")
+body_mesh = NodePath("Ireng/Armature/GeneralSkeleton/Ch28_Hoody")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -817,6 +820,61 @@ shape = SubResource("CapsuleShape3D_w6wah")
 
 [node name="Ireng" parent="." instance=ExtResource("2_b6bir")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="GeneralSkeleton" parent="Ireng/Armature" index="0"]
+bones/0/position = Vector3(-0.006667337, 0.9562723, 0.0075861476)
+bones/0/rotation = Quaternion(-0.03753602, -0.040423565, -0.024901979, 0.9981668)
+bones/1/rotation = Quaternion(0.03199191, 0.017011488, 0.023335388, 0.9990709)
+bones/2/rotation = Quaternion(0.01041844, 0.004229636, 0.014338334, 0.99983406)
+bones/3/rotation = Quaternion(0.009776564, 0.004156473, 0.014233677, 0.9998423)
+bones/4/rotation = Quaternion(0.05149844, -0.0023343274, 0.0029688757, 0.9986659)
+bones/5/rotation = Quaternion(0.051411904, -0.00260826, 0.0034643265, 0.9986682)
+bones/7/rotation = Quaternion(0.45854944, 0.4983974, 0.63348764, -0.3742002)
+bones/8/rotation = Quaternion(0.12582293, 0.8046365, -0.56751835, -0.12104371)
+bones/9/rotation = Quaternion(0.0095108645, -0.7070429, 0.009510971, 0.7070429)
+bones/10/rotation = Quaternion(0.051967397, 0.47583747, -0.013644384, 0.87789065)
+bones/11/rotation = Quaternion(-0.23049846, 0.68289214, 0.17170024, 0.6716009)
+bones/12/rotation = Quaternion(0.2014951, 0.2038914, -0.05959144, 0.9561783)
+bones/13/rotation = Quaternion(0.04001297, -0.05287604, -0.12858763, 0.9894788)
+bones/15/rotation = Quaternion(0.06621669, 0.00073322654, 0.008431107, 0.9977694)
+bones/16/rotation = Quaternion(0.15099774, -1.04308114e-07, -0.0154739, 0.98841304)
+bones/17/rotation = Quaternion(0.070081994, 2.980233e-08, -0.007181855, 0.99751544)
+bones/19/rotation = Quaternion(0.13653111, -0.003835931, -0.022952346, 0.9903624)
+bones/20/rotation = Quaternion(0.15125473, -1.4901159e-08, -0.015500216, 0.9883733)
+bones/21/rotation = Quaternion(0.15993266, -4.4703476e-08, -0.016389368, 0.9869919)
+bones/23/rotation = Quaternion(0.18325107, -0.0046531702, -0.031455215, 0.98255175)
+bones/24/rotation = Quaternion(0.18138775, 1.0430813e-07, -0.018588036, 0.98323596)
+bones/25/rotation = Quaternion(0.15521291, 5.9604638e-08, -0.015905796, 0.987753)
+bones/27/rotation = Quaternion(0.23386723, -0.0035054684, -0.049008727, 0.9710263)
+bones/28/rotation = Quaternion(0.15125808, 8.940697e-08, -0.015500516, 0.9883728)
+bones/29/rotation = Quaternion(0.14349759, 1.4901163e-08, -0.014705153, 0.9895415)
+bones/31/rotation = Quaternion(0.4749484, -0.47948045, -0.63771164, -0.37127668)
+bones/32/rotation = Quaternion(-0.1469807, 0.82766354, -0.49738035, 0.2144355)
+bones/33/rotation = Quaternion(0.041281447, 0.7059007, -0.041281365, 0.70590085)
+bones/34/rotation = Quaternion(0.042028528, -0.5696111, 0.036691785, 0.8200187)
+bones/35/rotation = Quaternion(-0.24051964, -0.67192996, -0.18474679, 0.6756693)
+bones/36/rotation = Quaternion(0.23822717, -0.20985533, 0.05118336, 0.9468838)
+bones/37/rotation = Quaternion(0.045545176, 0.046079442, 0.1616931, 0.984712)
+bones/39/rotation = Quaternion(0.059512988, -0.0009913296, -0.010975778, 0.99816674)
+bones/40/rotation = Quaternion(0.15128769, -4.4703484e-08, 0.012324154, 0.98841304)
+bones/41/rotation = Quaternion(0.07021637, 2.086162e-07, 0.0057199285, 0.9975154)
+bones/43/rotation = Quaternion(0.13051493, 0.0036899294, 0.018922238, 0.99125886)
+bones/44/rotation = Quaternion(0.15154496, -1.0430814e-07, 0.0123452265, 0.98837334)
+bones/45/rotation = Quaternion(0.16023935, 1.937151e-07, 0.013053447, 0.98699194)
+bones/47/rotation = Quaternion(0.17745194, 0.004501656, 0.026459042, 0.9837635)
+bones/48/rotation = Quaternion(0.18173559, 2.9802319e-08, 0.01480457, 0.98323596)
+bones/49/rotation = Quaternion(0.15551038, 1.4901159e-08, 0.01266828, 0.98775303)
+bones/51/rotation = Quaternion(0.22849339, 0.0034027696, 0.04298073, 0.97259027)
+bones/52/rotation = Quaternion(0.15154792, -1.4901158e-08, 0.01234555, 0.9883728)
+bones/53/rotation = Quaternion(0.14377266, 5.9604638e-08, 0.011712014, 0.9895415)
+bones/55/rotation = Quaternion(0.13522622, 0.098396465, 0.9825357, -0.08158297)
+bones/56/rotation = Quaternion(-0.03825842, 0.9921986, -0.11856128, 0.004649028)
+bones/57/rotation = Quaternion(-0.044073954, 0.7230328, -0.68749493, 0.051301222)
+bones/58/rotation = Quaternion(-9.6147495e-08, 0.9990753, 0.042996287, 7.507408e-08)
+bones/60/rotation = Quaternion(-0.092886016, 0.0039079017, 0.99535286, -0.025092095)
+bones/61/rotation = Quaternion(0.034523994, 0.9937718, -0.064989954, -0.08367807)
+bones/62/rotation = Quaternion(0.005016388, 0.6925728, -0.72077054, -0.028420486)
+bones/63/rotation = Quaternion(-9.064291e-08, 0.9981319, 0.0610964, -1.0934925e-07)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Ireng"]
 libraries = {
@@ -853,3 +911,14 @@ script = ExtResource("4_eiev2")
 
 [node name="HealthBarMesh" type="MeshInstance3D" parent="HealthBar3D"]
 mesh = SubResource("QuadMesh_eiev2")
+
+[node name="Sensor_Ambil" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sensor_Ambil"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_b71q8")
+
+[connection signal="body_entered" from="Sensor_Ambil" to="." method="_on_sensor_ambil_body_entered"]
+[connection signal="body_exited" from="Sensor_Ambil" to="." method="_on_sensor_ambil_body_exited"]
+
+[editable path="Ireng"]
