@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dfu8csu03hvgy"]
+[gd_scene load_steps=19 format=3 uid="uid://dfu8csu03hvgy"]
 
 [ext_resource type="Texture2D" uid="uid://do01si3a4lx5p" path="res://assets/Skybox/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="2_2wwxx"]
 [ext_resource type="Script" uid="uid://b2xlmbeob4880" path="res://script/player.gd" id="3_3amdw"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drdk2amtlfm72" path="res://Scene/Patient_2.tscn" id="6_ow1sv"]
 [ext_resource type="PackedScene" uid="uid://r5dgbnxfrte" path="res://Scene/Patient_3.tscn" id="7_c2iwn"]
 [ext_resource type="AudioStream" uid="uid://c6jd7wum0pcm3" path="res://assets/Audio/explosion.wav" id="8_75buv"]
+[ext_resource type="PackedScene" uid="uid://cuix6mjnti3v1" path="res://AssetRS/information_paper_-_laboratory__pbr__free.glb" id="10_3pt4j"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_lquwl"]
 panorama = ExtResource("2_2wwxx")
@@ -133,6 +134,9 @@ wait_time = 5.0
 [node name="SFX_Gameover" type="AudioStreamPlayer3D" parent="PatientSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5063543, 0, 0)
 stream = ExtResource("8_75buv")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("10_3pt4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.157066, 2.2720196, 9.866215)
 
 [connection signal="body_entered" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_entered"]
 [connection signal="body_exited" from="Gedung_RS/Sensor_1" to="Gedung_RS" method="_on_sensor_1_body_exited"]

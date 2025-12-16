@@ -524,9 +524,6 @@ shape = SubResource("BoxShape3D_dcg5e")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
 mesh = SubResource("BoxMesh_11tej")
 
-[node name="Sketchfab_Scene" parent="lantai2" instance=ExtResource("4_cfhey")]
-transform = Transform3D(-0.405, 0, -6.11533e-08, 0, 0.405, 0, 6.11533e-08, 0, -0.405, -6.2, 1.35, 2.4)
-
 [node name="SFX_Benar" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("36_h0ixe")
 

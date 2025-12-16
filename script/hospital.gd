@@ -56,7 +56,11 @@ func _ready():
 	else:
 		var gm = get_tree().get_nodes_in_group("game_manager")
 		if not gm.is_empty(): game_manager = gm[0]
-
+	timer_1.wait_time = waktu_pintu_1
+	timer_2.wait_time = waktu_pintu_2
+	timer_3.wait_time = waktu_pintu_3
+	timer_4.wait_time = waktu_pintu_4
+	
 	ui_label.visible = false 
 	
 	reset_teks_ruangan(1, teks_1)
