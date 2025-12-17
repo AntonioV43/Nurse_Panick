@@ -2,7 +2,7 @@
 
 <h1 align="center">Nurse Panic</h1>
 
-<p align="center"> <strong>Uji kecepatan dan ketelitianmu di tengah hiruk-pikuk rumah sakit!</strong>
+<p align="center"> <strong>Test your speed and accuracy amidst the hustle and bustle of the hospital!</strong>
 
 
-<em>Sebuah game manajemen waktu yang dikembangkan dengan <b>Godot Engine</b>, tentang seorang suster / perawat di jam sibuk kerja dan harus mengantar pasien ke ruangan yang benar atau mereka akan meninggal dan game over.</em> </p>
+<em>A time management game developed with the Godot Engine, about a nurse in a busy workday who has to get patients to the right room or they will die and it will be game over.</em> </p>
